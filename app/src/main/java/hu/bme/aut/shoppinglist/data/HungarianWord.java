@@ -2,16 +2,9 @@ package hu.bme.aut.shoppinglist.data;
 
 import android.arch.persistence.room.ColumnInfo;
 import android.arch.persistence.room.Entity;
-import android.arch.persistence.room.ForeignKey;
 import android.arch.persistence.room.PrimaryKey;
 
-import static android.arch.persistence.room.ForeignKey.CASCADE;
-
-@Entity(tableName = "hungarianword",
-        foreignKeys = @ForeignKey(entity = ItalianWord.class,
-        parentColumns = "id",
-        childColumns = "italianid",
-        onDelete = CASCADE))
+@Entity(tableName = "hungarianword")
 public class HungarianWord {
 
     @ColumnInfo(name = "id")
