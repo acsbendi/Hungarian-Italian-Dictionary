@@ -26,7 +26,8 @@ public interface ItalianWordDao {
     List<ItalianWord> getAllItalianWords();
 
     @Query("SELECT * FROM italianword AS iw " +
-            "JOIN hungarianword AS hw ON " + //TODO finish this query
+            "INNER JOIN translation AS t ON t.italianWordId = iw.id " +
+            "INNER JOIN hungarianword AS hw ON t.hungarianWordId = hw.id " +
             "WHERE hw.word = :hungarianWord")
     List<ItalianWord> findItalianTranslationsFor(String hungarianWord);
 

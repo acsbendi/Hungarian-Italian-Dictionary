@@ -10,12 +10,12 @@ import hu.bme.aut.shoppinglist.data.ItalianWord;
 import hu.bme.aut.shoppinglist.data.Translation;
 import hu.bme.aut.shoppinglist.data.TranslationData;
 
-public class TranslationAdder extends AsyncTask<Void, Void, Translation> {
+public class TranslationAdder extends AsyncTask<Void, Void, Void> {
 
-    private TranslationData translationData;
-    private DictionaryDatabase database;
+    private final TranslationData translationData;
+    private final DictionaryDatabase database;
 
-    TranslationAdder(TranslationData translationData, DictionaryDatabase database){
+    public TranslationAdder(TranslationData translationData, DictionaryDatabase database){
         this.translationData = translationData;
         this.database = database;
     }
@@ -51,7 +51,7 @@ public class TranslationAdder extends AsyncTask<Void, Void, Translation> {
     }
 
     @Override
-    protected Translation doInBackground(Void... voids) {
+    protected Void doInBackground(Void... voids) {
         String hungarianWord = translationData.hungarianWord;
         String italianWord = translationData.italianWord;
 
@@ -61,8 +61,7 @@ public class TranslationAdder extends AsyncTask<Void, Void, Translation> {
         Translation translation = new Translation(italianWordId, hungarianWordId);
 
         database.translationDao().insert(translation);
-        return translation;
+
+        return null;
     }
-
-
 }
