@@ -12,20 +12,17 @@ import android.view.View;
 import android.widget.EditText;
 
 import hu.bme.aut.shoppinglist.R;
+import hu.bme.aut.shoppinglist.data.TranslationData;
 
 public class NewTranslationDialogFragment extends DialogFragment {
 
-    public class Translation{
-        public String hungarianWord;
-        public String italianWord;
+    public interface NewTranslationDialogListener {
+        void onTranslationCreated(final TranslationData translationData);
     }
 
-    public interface NewTranslationDialogListener {
-        void onTranslationCreated(Translation translation);
-    }
+    public String TAG="NewTranslationDialogFragment";
 
     private NewTranslationDialogListener listener;
-
     private EditText hungarianWordEditText;
     private EditText italianWordEditText;
 
@@ -65,12 +62,12 @@ public class NewTranslationDialogFragment extends DialogFragment {
         return contentView;
     }
 
-    private Translation getTranslation() {
-        Translation newTranslation = new Translation();
+    private TranslationData getTranslation() {
+        TranslationData newTranslationData = new TranslationData();
 
-        newTranslation.hungarianWord = hungarianWordEditText.getText().toString();
-        newTranslation.italianWord = italianWordEditText.getText().toString();
+        newTranslationData.hungarianWord = hungarianWordEditText.getText().toString();
+        newTranslationData.italianWord = italianWordEditText.getText().toString();
 
-        return newTranslation;
+        return newTranslationData;
     }
 }
