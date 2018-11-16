@@ -41,7 +41,7 @@ public class TranslationAdder extends AsyncTask<Void, Void, Void> {
             return italianWordResult.get(0).id;
         else{
             insertNewItalianWord(italianWord);
-            return getHungarianWordId(italianWord);
+            return getItalianWordId(italianWord);
         }
     }
 
