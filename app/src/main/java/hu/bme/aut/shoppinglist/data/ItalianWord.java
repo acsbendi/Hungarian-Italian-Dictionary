@@ -10,4 +10,8 @@ public class ItalianWord extends Word{
     @ColumnInfo(name = "id")
     @PrimaryKey(autoGenerate = true)
     public Long id;
+
+    public ItalianWord(String word){
+        super(word);
+    }
 }

@@ -14,10 +14,10 @@ import android.arch.persistence.room.ForeignKey;
                         childColumns = "italianWordId")
         })
 public class Translation {
-    public final int italianWordId;
-    public final int hungarianWordId;
+    public final Long italianWordId;
+    public final Long hungarianWordId;
 
-    public Translation(final int italianWordId, final int hungarianWordId) {
+    public Translation(final long italianWordId, final long hungarianWordId) {
         this.italianWordId = italianWordId;
         this.hungarianWordId = hungarianWordId;
     }

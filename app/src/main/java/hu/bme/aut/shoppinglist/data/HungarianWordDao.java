@@ -29,4 +29,8 @@ public interface HungarianWordDao {
             "JOIN italianword AS iw ON " + //TODO finish this query
             "WHERE iw.word = :italianWord")
     List<HungarianWord> findHungarianTranslationsFor(String italianWord);
+
+    @Query("SELECT * FROM hungarianword " +
+            "WHERE word = :hungarianWord")
+    List<HungarianWord> findHungarianWord(String hungarianWord);
 }

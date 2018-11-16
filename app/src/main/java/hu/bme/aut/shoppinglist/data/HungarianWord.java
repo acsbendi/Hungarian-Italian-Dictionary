@@ -10,4 +10,8 @@ public class HungarianWord extends Word{
     @ColumnInfo(name = "id")
     @PrimaryKey(autoGenerate = true)
     public Long id;
+
+    public HungarianWord(String word){
+        super(word);
+    }
 }
