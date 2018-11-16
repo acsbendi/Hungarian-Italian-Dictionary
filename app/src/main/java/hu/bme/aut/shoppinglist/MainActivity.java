@@ -2,40 +2,54 @@ package hu.bme.aut.shoppinglist;
 
 import android.app.AlertDialog;
 import android.arch.persistence.room.Room;
-import android.content.DialogInterface;
-import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.EditText;
+import android.widget.ImageButton;
 
-import java.util.Iterator;
 import java.util.List;
+import java.util.concurrent.ExecutionException;
 
-import hu.bme.aut.shoppinglist.adapter.ShoppingAdapter;
-import hu.bme.aut.shoppinglist.data.ShoppingItem;
-import hu.bme.aut.shoppinglist.data.ShoppingListDatabase;
-import hu.bme.aut.shoppinglist.fragments.NewShoppingItemDialogFragment;
+import hu.bme.aut.shoppinglist.adapter.TranslationAdapter;
+import hu.bme.aut.shoppinglist.backgroundtasks.HungarianToItalianTranslationFinder;
+import hu.bme.aut.shoppinglist.backgroundtasks.TranslationAdder;
+import hu.bme.aut.shoppinglist.data.DictionaryDatabase;
+import hu.bme.aut.shoppinglist.data.ItalianWord;
+import hu.bme.aut.shoppinglist.data.TranslationData;
+import hu.bme.aut.shoppinglist.fragments.NewTranslationDialogFragment;
 
 public class MainActivity extends AppCompatActivity
-        implements NewShoppingItemDialogFragment.NewShoppingItemDialogListener,
-        ShoppingAdapter.ShoppingItemClickListener {
+        implements NewTranslationDialogFragment.NewTranslationDialogListener {
 
     private RecyclerView recyclerView;
-    private ShoppingAdapter adapter;
+    private TranslationAdapter adapter;
+    private ImageButton searchButton;
+    private EditText searchEditText;
 
-    private ShoppingListDatabase database;
+    private DictionaryDatabase database;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        searchButton = findViewById(R.id.searchButton);
+        searchEditText = findViewById(R.id.searchEditText);
+
+        searchButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                loadItalianTranslationsInBackground(searchEditText.getText().toString());
+            }
+        });
+
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
@@ -43,14 +57,14 @@ public class MainActivity extends AppCompatActivity
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                new NewShoppingItemDialogFragment().show(getSupportFragmentManager(), NewShoppingItemDialogFragment.TAG);
+                new NewTranslationDialogFragment().show(getSupportFragmentManager(), NewTranslationDialogFragment.TAG);
             }
         });
 
         database = Room.databaseBuilder(
                 getApplicationContext(),
-                ShoppingListDatabase.class,
-                "shopping-list"
+                DictionaryDatabase.class,
+                "dictionary"
         ).build();
 
         initRecyclerView();
@@ -58,25 +72,24 @@ public class MainActivity extends AppCompatActivity
 
     private void initRecyclerView() {
         recyclerView = findViewById(R.id.MainRecyclerView);
-        adapter = new ShoppingAdapter(this);
-        loadItemsInBackground();
+        adapter = new TranslationAdapter();
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         recyclerView.setAdapter(adapter);
     }
 
-    private void loadItemsInBackground() {
-        new AsyncTask<Void, Void, List<ShoppingItem>>() {
+    private void loadItalianTranslationsInBackground(String hungarianWord) {
+        HungarianToItalianTranslationFinder finder = new HungarianToItalianTranslationFinder(hungarianWord, database);
+        finder.execute();
+        try {
+            List<ItalianWord> italianTranslations = finder.get();
 
-            @Override
-            protected List<ShoppingItem> doInBackground(Void... voids) {
-                return database.shoppingItemDao().getAll();
-            }
-
-            @Override
-            protected void onPostExecute(List<ShoppingItem> shoppingItems) {
-                adapter.update(shoppingItems);
-            }
-        }.execute();
+            for(ItalianWord italianWord : italianTranslations)
+                adapter.addItem(italianWord);
+        } catch (ExecutionException e) {
+            e.printStackTrace();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
     }
 
     @Override
@@ -107,109 +120,16 @@ public class MainActivity extends AppCompatActivity
     }
 
     @Override
-    public void onItemChanged(final ShoppingItem item) {
-        new AsyncTask<Void, Void, Boolean>() {
+    public void onTranslationCreated(final TranslationData translationData) {
+        TranslationAdder translationAdder = new TranslationAdder(translationData, database);
 
-            @Override
-            protected Boolean doInBackground(Void... voids) {
-                database.shoppingItemDao().update(item);
-                return true;
-            }
-
-            @Override
-            protected void onPostExecute(Boolean isSuccessful) {
-                Log.d("MainActivity", "ShoppingItem update was successful");
-            }
-        }.execute();
-    }
-
-    @Override
-    public void onShoppingItemCreated(final ShoppingItem newItem) {
-        new AsyncTask<Void, Void, ShoppingItem>() {
-
-            @Override
-            protected ShoppingItem doInBackground(Void... voids) {
-                database.shoppingItemDao().insertAll(newItem);
-                return newItem;
-            }
-
-            @Override
-            protected void onPostExecute(ShoppingItem shoppingItem) {
-                adapter.addItem(shoppingItem);
-            }
-        }.execute();
-    }
-
-    @Override
-    public void onItemDeleted(final ShoppingItem item){
-        new AsyncTask<ShoppingItem, Void, Boolean>() {
-
-            @Override
-            protected Boolean doInBackground(ShoppingItem... shoppingItem) {
-                database.shoppingItemDao().deleteItem(shoppingItem[0]);
-                return true;
-            }
-
-            @Override
-            protected void onPostExecute(Boolean isSuccessful) {
-                Log.d("MainActivity", "ShoppingItem delete was successful");
-            }
-        }.execute(item);
+        translationAdder.execute();
     }
 
     private void onAllItemsDeleteButtonClick(){
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setMessage("All items will be deleted. Are you sure you want to do this?");
-        builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialog, int which) {
-                deleteAllItems();
-            }
-        });
         builder.setNegativeButton("Cancel", null);
         builder.show();
-    }
-
-    private void deleteAllItems(){
-        new AsyncTask<Void, Void, Boolean>() {
-
-            @Override
-            protected Boolean doInBackground(Void... voids) {
-                for(Iterator<ShoppingItem> i = database.shoppingItemDao().getAll().iterator(); i.hasNext();)
-                    database.shoppingItemDao().deleteItem(i.next());
-                return true;
-            }
-
-            @Override
-            protected void onPostExecute(Boolean isSuccessful) {
-                Log.d("MainActivity", "Deleting all ShoppingItems was successful");
-            }
-        }.execute();
-        adapter.deleteAllItems();
-    }
-
-    @Override
-    public void editItem(ShoppingItem item) {
-        NewShoppingItemDialogFragment shoppingItemDialogFragment = new NewShoppingItemDialogFragment();
-        shoppingItemDialogFragment.show(getSupportFragmentManager(), NewShoppingItemDialogFragment.TAG);
-        shoppingItemDialogFragment.setItemToShow(item);
-    }
-
-    @Override
-    public void onShoppingItemChanged(ShoppingItem item) {
-        new AsyncTask<ShoppingItem, Void, Boolean>() {
-
-            @Override
-            protected Boolean doInBackground(ShoppingItem... shoppingItems) {
-                database.shoppingItemDao().update(shoppingItems[0]);
-                return true;
-            }
-
-            @Override
-            protected void onPostExecute(Boolean isSuccessful) {
-                Log.d("MainActivity", "Updating ShoppingItem was successful");
-            }
-        }.execute(item);
-        adapter.onItemUpdated(item);
     }
 }

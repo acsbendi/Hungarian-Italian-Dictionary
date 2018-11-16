@@ -20,7 +20,7 @@ public class NewTranslationDialogFragment extends DialogFragment {
         void onTranslationCreated(final TranslationData translationData);
     }
 
-    public String TAG="NewTranslationDialogFragment";
+    public static String TAG="NewTranslationDialogFragment";
 
     private NewTranslationDialogListener listener;
     private EditText hungarianWordEditText;
