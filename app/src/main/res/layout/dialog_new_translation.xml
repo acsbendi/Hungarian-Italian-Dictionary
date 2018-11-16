@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center_vertical"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:padding="24dip">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/hungarian_word"
+        android:labelFor="@+id/NewTranslationDialogHungarianWord"/>
+
+    <EditText
+        tools:targetApi="26"
+        android:id="@+id/NewTranslationDialogHungarianWord"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:inputType="text"
+        android:importantForAutofill="no"
+        android:hint="@string/hungarian_word_hint"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dip"
+        android:text="@string/italian_word"
+        android:labelFor="@+id/NewTranslationDialogItalianWord"/>
+
+    <EditText
+        tools:targetApi="26"
+        android:id="@+id/NewTranslationDialogItalianWord"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:inputType="text"
+        android:importantForAutofill="no"
+        android:hint="@string/italian_word_hint"/>
+
+</LinearLayout>
