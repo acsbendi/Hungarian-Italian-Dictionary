@@ -24,7 +24,7 @@ public class TranslationAdapter
     public TranslationViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View itemView = LayoutInflater
                 .from(parent.getContext())
-                .inflate(R.layout.item_shopping_list, parent, false);
+                .inflate(R.layout.word, parent, false);
         return new TranslationViewHolder(itemView);
     }
 
@@ -54,7 +54,7 @@ public class TranslationAdapter
 
         TranslationViewHolder(View itemView) {
             super(itemView);
-            wordTextView = itemView.findViewById(R.id.ShoppingItemNameTextView);
+            wordTextView = itemView.findViewById(R.id.wordTextView);
         }
     }
 }
