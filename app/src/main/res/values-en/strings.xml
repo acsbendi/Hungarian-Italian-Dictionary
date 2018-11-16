@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="hungarian_word">Hungarian word</string>
+    <string name="italian_word">Italian word</string>
+    <string name="hungarian_word_hint">type the Hungarian word here</string>
+    <string name="italian_word_hint">type the Italian word here</string>
+</resources>
