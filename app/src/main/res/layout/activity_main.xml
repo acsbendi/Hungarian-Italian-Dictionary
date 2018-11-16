@@ -47,7 +47,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:contentDescription="@string/search"
-            android:src="@drawable/magnifying-glass"
+            android:src="@drawable/magnifying_glass"
             />
 
     </LinearLayout>
