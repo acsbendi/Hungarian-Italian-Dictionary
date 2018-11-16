@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <string name="app_name">Magyar-olasz szótár</string>
 
     <string name="hungarian_word">Magyar szó</string>
     <string name="italian_word">Olasz szó</string>
