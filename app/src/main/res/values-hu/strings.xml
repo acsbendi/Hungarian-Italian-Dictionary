@@ -6,4 +6,6 @@
     <string name="hungarian_word_hint">írd ide a magyar szót</string>
     <string name="italian_word_hint">írd ide az olasz szót</string>
     <string name="creating_new_translation">Új fordítás létrehozása</string>
+    <string name="search">keresés</string>
+    <string name="search_hint">írd be a keresendő szót</string>
 </resources>
