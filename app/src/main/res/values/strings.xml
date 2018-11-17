@@ -19,4 +19,5 @@
     <string name="random">Véletlenszerű</string>
     <string name="personal_favorites">Személyes kedvencek</string>
     <string name="switch_quiz_type">kvíz típus választás</string>
+    <string name="word_to_translate">lefordítandó szó</string>
 </resources>
