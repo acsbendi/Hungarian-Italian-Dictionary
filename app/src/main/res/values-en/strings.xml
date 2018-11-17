@@ -6,7 +6,7 @@
     <string name="italian_word">Italian word</string>
     <string name="hungarian_word_hint">type the Hungarian word here</string>
     <string name="italian_word_hint">type the Italian word here</string>
-    <string name="creating_new_translation">Új fordítás létrehozása</string>
+    <string name="creating_new_translation">Creating new translation</string>
     <string name="search">search</string>
     <string name="search_hint">type the word to search</string>
 </resources>
