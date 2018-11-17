@@ -25,7 +25,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:weightSum="8"
-        android:orientation="horizontal">
+        android:orientation="horizontal"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
         <EditText
             tools:targetApi="26"
@@ -48,6 +49,9 @@
             android:layout_weight="1"
             android:contentDescription="@string/search"
             android:src="@drawable/magnifying_glass"
+            android:layout_gravity="center"
+            android:adjustViewBounds="true"
+            android:scaleType="centerInside"
             />
 
     </LinearLayout>
