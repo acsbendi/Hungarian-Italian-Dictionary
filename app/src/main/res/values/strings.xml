@@ -16,4 +16,7 @@
     <string name="italian">Olasz</string>
     <string name="hungarian">Magyar</string>
     <string name="switch_languages">Nyelvváltás</string>
+    <string name="random">Véletlenszerű</string>
+    <string name="personal_favorites">Személyes kedvencek</string>
+    <string name="switch_quiz_type">kvíz típus választás</string>
 </resources>

@@ -16,4 +16,7 @@
     <string name="italian">Italian</string>
     <string name="hungarian">Hungarian</string>
     <string name="switch_languages">Switch languages</string>
+    <string name="random">Random</string>
+    <string name="personal_favorites">Personal favorites</string>
+    <string name="switch_quiz_type">switch quiz type</string>
 </resources>

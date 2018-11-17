@@ -1,0 +1,45 @@
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:weightSum="10"
+    android:orientation="horizontal">
+
+
+    <TextView
+        android:id="@+id/randomTextView"
+        android:layout_width="0dp"
+        android:layout_height="65dp"
+        android:layout_weight="4"
+        android:gravity="center"
+        android:text="@string/random"
+        app:autoSizeTextType="uniform"
+        />
+
+    <FrameLayout
+        android:id="@+id/switch_tgl"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="2">
+        <android.support.v7.widget.SwitchCompat
+            android:id="@+id/languageSwitchButton"
+            android:layout_gravity="center"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:theme="@style/Theme.AppCompat.Light"
+            android:background="@android:color/transparent"
+            android:contentDescription="@string/switch_quiz_type"
+            /> <!--TODO set a good looking color here -->
+    </FrameLayout>
+
+    <TextView
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="4"
+        android:gravity="center"
+        android:text="@string/personal_favorites"
+        app:autoSizeTextType="uniform"
+        />
+
+</LinearLayout>
