@@ -13,4 +13,7 @@
     <string name="ok">OK</string>
     <string name="translation">Translation</string>
     <string name="quiz">Quiz</string>
+    <string name="italian">Italian</string>
+    <string name="hungarian">Hungarian</string>
+    <string name="switch_languages">Switch languages</string>
 </resources>

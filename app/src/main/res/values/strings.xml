@@ -13,4 +13,7 @@
     <string name="ok">Oké</string>
     <string name="translation">Fordítás</string>
     <string name="quiz">Kvíz</string>
+    <string name="italian">Olasz</string>
+    <string name="hungarian">Magyar</string>
+    <string name="switch_languages">Nyelvváltás</string>
 </resources>
