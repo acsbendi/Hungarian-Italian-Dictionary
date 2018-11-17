@@ -1,6 +1,8 @@
 package hu.bme.aut.shoppinglist.backgroundtasks;
 
+import android.database.sqlite.SQLiteConstraintException;
 import android.os.AsyncTask;
+import android.util.Log;
 
 import java.util.List;
 
@@ -59,9 +61,11 @@ public class TranslationAdder extends AsyncTask<Void, Void, Void> {
         long italianWordId = getItalianWordId(italianWord);
 
         Translation translation = new Translation(italianWordId, hungarianWordId);
-
-        database.translationDao().insert(translation);
-
+        try{
+            database.translationDao().insert(translation);
+        } catch (SQLiteConstraintException e){
+            Log.d("Translation adder","Adding translation failed - tried to insert existing translation");
+        }
         return null;
     }
 }
