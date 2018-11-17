@@ -7,6 +7,7 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 
 import hu.bme.aut.shoppinglist.R;
+import hu.bme.aut.shoppinglist.fragments.QuizFragment;
 import hu.bme.aut.shoppinglist.fragments.TranslationFinderFragment;
 
 public class FragmentViewPagerAdapter extends FragmentPagerAdapter {
@@ -24,7 +25,7 @@ public class FragmentViewPagerAdapter extends FragmentPagerAdapter {
             case 0:
                 return new TranslationFinderFragment();
             case 1:
-                return new FragmentTwo();
+                return new QuizFragment();
             default:
                 return new TranslationFinderFragment();
         }

@@ -35,6 +35,7 @@
         android:id="@+id/checkQuizButton"
         android:layout_width="400dp"
         android:layout_height="wrap_content"
+        android:visibility="invisible"
         fbutton:buttonColor="@color/fbutton_color_concrete"
         fbutton:shadowColor="@color/fbutton_color_asbestos"
         fbutton:shadowEnabled="true"
