@@ -4,13 +4,17 @@ import android.arch.persistence.room.Entity;
 import android.arch.persistence.room.ForeignKey;
 import android.support.annotation.NonNull;
 
+import static android.arch.persistence.room.ForeignKey.CASCADE;
+
 @Entity(tableName = "translation",
         primaryKeys = { "italianWordId", "hungarianWordId" },
         foreignKeys = {
-                @ForeignKey(entity = HungarianWord.class,
+                @ForeignKey(onDelete = CASCADE,
+                        entity = HungarianWord.class,
                         parentColumns = "id",
                         childColumns = "hungarianWordId"),
-                @ForeignKey(entity = ItalianWord.class,
+                @ForeignKey(onDelete = CASCADE,
+                        entity = ItalianWord.class,
                         parentColumns = "id",
                         childColumns = "italianWordId")
         })
