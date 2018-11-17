@@ -2,12 +2,15 @@ package hu.bme.aut.shoppinglist;
 
 import android.app.AlertDialog;
 import android.arch.persistence.room.Room;
+import android.content.DialogInterface;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -21,6 +24,7 @@ import hu.bme.aut.shoppinglist.adapter.TranslationAdapter;
 import hu.bme.aut.shoppinglist.backgroundtasks.HungarianToItalianTranslationFinder;
 import hu.bme.aut.shoppinglist.backgroundtasks.TranslationAdder;
 import hu.bme.aut.shoppinglist.data.DictionaryDatabase;
+import hu.bme.aut.shoppinglist.data.HungarianWord;
 import hu.bme.aut.shoppinglist.data.ItalianWord;
 import hu.bme.aut.shoppinglist.data.TranslationData;
 import hu.bme.aut.shoppinglist.fragments.NewTranslationDialogFragment;
@@ -64,8 +68,9 @@ public class MainActivity extends AppCompatActivity
         database = Room.databaseBuilder(
                 getApplicationContext(),
                 DictionaryDatabase.class,
-                "dictionary"
-        ).build();
+                "dictionary")
+                .fallbackToDestructiveMigration()
+                .build();
 
         initRecyclerView();
     }
@@ -108,6 +113,7 @@ public class MainActivity extends AppCompatActivity
 
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_settings) {
+            onLogDatabaseButtonClick();
             return true;
         }
 
@@ -129,6 +135,58 @@ public class MainActivity extends AppCompatActivity
     private void onAllItemsDeleteButtonClick(){
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setMessage("All items will be deleted. Are you sure you want to do this?");
+        builder.setPositiveButton("yesssss", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                new AsyncTask<Void, Void, Void>(){
+
+                    @Override
+                    protected Void doInBackground(Void... voids) {
+
+                        List<ItalianWord> allItalianWords = database.italianWordDao().getAllItalianWords();
+
+                        database.italianWordDao().delete(allItalianWords.toArray(new ItalianWord[allItalianWords.size()]));
+
+                        List<HungarianWord> allHungarianWords = database.hungarianWordDao().getAllHungarianWords();
+
+                        database.hungarianWordDao().delete(allHungarianWords.toArray(new HungarianWord[allHungarianWords.size()]));
+
+                        return null;
+                    }
+                }.execute();
+
+            }
+        });
+        builder.setNegativeButton("Cancel", null);
+        builder.show();
+    }
+
+    private void onLogDatabaseButtonClick(){
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setMessage("All items will be logged. Are you sure you want to do this?");
+        builder.setPositiveButton("yesssss", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                new AsyncTask<Void, Void, Void>(){
+
+                    @Override
+                    protected Void doInBackground(Void... voids) {
+                        List<HungarianWord> hungarianWords = database.hungarianWordDao().getAllHungarianWords();
+                        List<ItalianWord> italianWords = database.italianWordDao().getAllItalianWords();
+
+                        for(HungarianWord hungarianWord : hungarianWords)
+                            Log.d("hungarian word", hungarianWord.word + " " + String.valueOf(hungarianWord.id));
+
+                        for(ItalianWord italianWord : italianWords)
+                            Log.d("italian word", italianWord.word + " " + String.valueOf(italianWord.id));
+
+
+                        return null;
+                    }
+                }.execute();
+
+            }
+        });
         builder.setNegativeButton("Cancel", null);
         builder.show();
     }
