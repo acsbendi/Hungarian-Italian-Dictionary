@@ -7,6 +7,7 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 
 import hu.bme.aut.shoppinglist.R;
+import hu.bme.aut.shoppinglist.fragments.TranslationFinderFragment;
 
 public class FragmentViewPagerAdapter extends FragmentPagerAdapter {
 
@@ -21,11 +22,11 @@ public class FragmentViewPagerAdapter extends FragmentPagerAdapter {
     public Fragment getItem(int i) {
         switch (i) {
             case 0:
-                return new FragmentOne();
+                return new TranslationFinderFragment();
             case 1:
                 return new FragmentTwo();
             default:
-                return new FragmentOne();
+                return new TranslationFinderFragment();
         }
     }
 
