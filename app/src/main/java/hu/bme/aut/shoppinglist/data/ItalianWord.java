@@ -2,9 +2,12 @@ package hu.bme.aut.shoppinglist.data;
 
 import android.arch.persistence.room.ColumnInfo;
 import android.arch.persistence.room.Entity;
+import android.arch.persistence.room.Index;
 import android.arch.persistence.room.PrimaryKey;
 
-@Entity(tableName = "italianword")
+@Entity(tableName = "italianword",
+        indices = {@Index(value = "word",
+                unique = true)})
 public class ItalianWord extends Word{
 
     @ColumnInfo(name = "id")
@@ -15,3 +18,6 @@ public class ItalianWord extends Word{
         super(word);
     }
 }
+
+
+
