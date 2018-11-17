@@ -45,9 +45,9 @@ public class TranslationAdder extends AsyncTask<Void, Void, Void> {
         }
     }
 
-    private void insertNewItalianWord(String hungarianWord){
-        HungarianWord hungarianWordToInsert = new HungarianWord(hungarianWord);
-        database.hungarianWordDao().insert(hungarianWordToInsert);
+    private void insertNewItalianWord(String italianWord){
+        ItalianWord italianWordToInsert = new ItalianWord(italianWord);
+        database.italianWordDao().insert(italianWordToInsert);
     }
 
     @Override
