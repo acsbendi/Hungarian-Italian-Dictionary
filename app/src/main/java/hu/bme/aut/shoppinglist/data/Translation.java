@@ -7,7 +7,7 @@ import android.support.annotation.NonNull;
 import static android.arch.persistence.room.ForeignKey.CASCADE;
 
 @Entity(tableName = "translation",
-        primaryKeys = { "italianWordId", "hungarianWordId" },
+        primaryKeys = {  "hungarianWordId", "italianWordId" },
         foreignKeys = {
                 @ForeignKey(onDelete = CASCADE,
                         entity = HungarianWord.class,
@@ -20,12 +20,12 @@ import static android.arch.persistence.room.ForeignKey.CASCADE;
         })
 public class Translation{
     @NonNull
-    public final Long italianWordId;
-    @NonNull
     public final Long hungarianWordId;
+    @NonNull
+    public final Long italianWordId;
 
-    public Translation(final long italianWordId, final long hungarianWordId) {
-        this.italianWordId = italianWordId;
+    public Translation(final long hungarianWordId, final long italianWordId) {
         this.hungarianWordId = hungarianWordId;
+        this.italianWordId = italianWordId;
     }
 }

@@ -22,16 +22,16 @@ public interface ItalianWordDao {
     @Delete
     void delete(ItalianWord... italianWords);
 
-    @Query("SELECT * FROM italianword")
+    @Query("SELECT iw.id, iw.word FROM italianword AS iw")
     List<ItalianWord> getAllItalianWords();
 
-    @Query("SELECT * FROM italianword AS iw " +
+    @Query("SELECT iw.id, iw.word FROM italianword AS iw " +
             "INNER JOIN translation AS t ON t.italianWordId = iw.id " +
             "INNER JOIN hungarianword AS hw ON t.hungarianWordId = hw.id " +
             "WHERE hw.word = :hungarianWord")
     List<ItalianWord> findItalianTranslationsFor(String hungarianWord);
 
-    @Query("SELECT * FROM italianword " +
+    @Query("SELECT iw.id, iw.word FROM italianword AS iw " +
             "WHERE word = :italianWord")
     List<ItalianWord> findItalianWord(String italianWord);
 }

@@ -60,7 +60,7 @@ public class TranslationAdder extends AsyncTask<Void, Void, Void> {
         long hungarianWordId = getHungarianWordId(hungarianWord);
         long italianWordId = getItalianWordId(italianWord);
 
-        Translation translation = new Translation(italianWordId, hungarianWordId);
+        Translation translation = new Translation(hungarianWordId, italianWordId);
         try{
             database.translationDao().insert(translation);
         } catch (SQLiteConstraintException e){

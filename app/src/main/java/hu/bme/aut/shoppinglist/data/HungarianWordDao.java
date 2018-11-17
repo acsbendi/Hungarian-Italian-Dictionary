@@ -22,10 +22,10 @@ public interface HungarianWordDao {
     @Delete
     void delete(HungarianWord... hungarianWords);
 
-    @Query("SELECT * FROM hungarianword")
+    @Query("SELECT hw.id, hw.word FROM hungarianword AS hw")
     List<HungarianWord> getAllHungarianWords();
 
-    @Query("SELECT * FROM hungarianword " +
+    @Query("SELECT hw.id, hw.word FROM hungarianword AS hw " +
             "WHERE word = :hungarianWord")
     List<HungarianWord> findHungarianWord(String hungarianWord);
 }
