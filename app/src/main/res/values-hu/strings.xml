@@ -11,4 +11,6 @@
     <string name="search_hint">írd be a keresendő szót</string>
     <string name="cancel">Mégse</string>
     <string name="ok">Oké</string>
+    <string name="translation">Fordítás</string>
+    <string name="quiz">Kvíz</string>
 </resources>

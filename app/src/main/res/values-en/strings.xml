@@ -11,4 +11,6 @@
     <string name="search_hint">type the word to search</string>
     <string name="cancel">Cancel</string>
     <string name="ok">OK</string>
+    <string name="translation">Translation</string>
+    <string name="quiz">Quiz</string>
 </resources>
