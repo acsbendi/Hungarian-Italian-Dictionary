@@ -63,7 +63,7 @@ public class TranslationFinderFragment extends Fragment {
     }
 
     private void loadItalianTranslationsInBackground(String hungarianWord) {
-        List<ItalianWord> italianTranslations = activity.findItalianTranslations(hungarianWord);
+        List<ItalianWord> italianTranslations = activity.findItalianTranslationsFor(hungarianWord);
 
         for(ItalianWord italianWord : italianTranslations)
             adapter.addItem(italianWord);

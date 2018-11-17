@@ -6,21 +6,19 @@ import android.content.DialogInterface;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
+import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.widget.EditText;
-import android.widget.ImageButton;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.ExecutionException;
 
-import hu.bme.aut.shoppinglist.adapter.TranslationAdapter;
+import hu.bme.aut.shoppinglist.adapter.FragmentViewPagerAdapter;
 import hu.bme.aut.shoppinglist.backgroundtasks.HungarianToItalianTranslationFinder;
 import hu.bme.aut.shoppinglist.backgroundtasks.TranslationAdder;
 import hu.bme.aut.shoppinglist.data.DictionaryDatabase;
@@ -32,11 +30,6 @@ import hu.bme.aut.shoppinglist.fragments.NewTranslationDialogFragment;
 public class MainActivity extends AppCompatActivity
         implements NewTranslationDialogFragment.NewTranslationDialogListener {
 
-    private RecyclerView recyclerView;
-    private TranslationAdapter adapter;
-    private ImageButton searchButton;
-    private EditText searchEditText;
-
     private DictionaryDatabase database;
 
     @Override
@@ -44,16 +37,12 @@ public class MainActivity extends AppCompatActivity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        searchButton = findViewById(R.id.searchButton);
-        searchEditText = findViewById(R.id.searchEditText);
+        initLayout();
 
-        searchButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                loadItalianTranslationsInBackground(searchEditText.getText().toString());
-            }
-        });
+        initDatabase();
+    }
 
+    private void initLayout() {
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
@@ -65,36 +54,17 @@ public class MainActivity extends AppCompatActivity
             }
         });
 
+        ViewPager viewPager = findViewById(R.id.viewPager);
+        viewPager.setAdapter(new FragmentViewPagerAdapter(getBaseContext(), getSupportFragmentManager()));
+    }
+
+    private void initDatabase(){
         database = Room.databaseBuilder(
                 getApplicationContext(),
                 DictionaryDatabase.class,
                 "dictionary")
                 .fallbackToDestructiveMigration()
                 .build();
-
-        initRecyclerView();
-    }
-
-    private void initRecyclerView() {
-        recyclerView = findViewById(R.id.MainRecyclerView);
-        adapter = new TranslationAdapter();
-        recyclerView.setLayoutManager(new LinearLayoutManager(this));
-        recyclerView.setAdapter(adapter);
-    }
-
-    private void loadItalianTranslationsInBackground(String hungarianWord) {
-        HungarianToItalianTranslationFinder finder = new HungarianToItalianTranslationFinder(hungarianWord, database);
-        finder.execute();
-        try {
-            List<ItalianWord> italianTranslations = finder.get();
-
-            for(ItalianWord italianWord : italianTranslations)
-                adapter.addItem(italianWord);
-        } catch (ExecutionException e) {
-            e.printStackTrace();
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
     }
 
     @Override
@@ -189,5 +159,18 @@ public class MainActivity extends AppCompatActivity
         });
         builder.setNegativeButton("Cancel", null);
         builder.show();
+    }
+
+
+    public List<ItalianWord> findItalianTranslationsFor(String hungarianWord) {
+        try {
+            HungarianToItalianTranslationFinder finder = new HungarianToItalianTranslationFinder(hungarianWord, database);
+            finder.execute();
+
+            return finder.get();
+        } catch (ExecutionException | InterruptedException e) {
+            e.printStackTrace();
+            return new ArrayList<>();
+        }
     }
 }
