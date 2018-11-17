@@ -43,15 +43,15 @@ public class NewTranslationDialogFragment extends DialogFragment {
         return new AlertDialog.Builder(requireContext())
                 .setTitle(R.string.creating_new_translation)
                 .setView(getContentView())
-                .setPositiveButton("Oké", new DialogInterface.OnClickListener() {
+                .setPositiveButton(R.string.ok, new DialogInterface.OnClickListener() {
                     @Override
-                    public void onClick(DialogInterface dialogInterface, int i) { //TODO put these into resources
+                    public void onClick(DialogInterface dialogInterface, int i) {
                         if (true) { //TODO check if content is valid
                             listener.onTranslationCreated(getTranslation());
                         }
                     }
                 })
-                .setNegativeButton("Mégse", null)
+                .setNegativeButton(R.string.cancel, null)
                 .create();
     }
 

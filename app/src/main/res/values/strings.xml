@@ -9,4 +9,6 @@
     <string name="creating_new_translation">Új fordítás létrehozása</string>
     <string name="search">keresés</string>
     <string name="search_hint">írd be a keresendő szót</string>
+    <string name="cancel">Mégse</string>
+    <string name="ok">Oké</string>
 </resources>
