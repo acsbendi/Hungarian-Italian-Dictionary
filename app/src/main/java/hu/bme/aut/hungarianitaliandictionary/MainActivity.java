@@ -22,6 +22,7 @@ import hu.bme.aut.hungarianitaliandictionary.adapter.FragmentViewPagerAdapter;
 import hu.bme.aut.hungarianitaliandictionary.adapter.TranslationAdapter;
 import hu.bme.aut.hungarianitaliandictionary.backgroundtasks.HungarianToItalianTranslationFinder;
 import hu.bme.aut.hungarianitaliandictionary.backgroundtasks.HungarianWordChangeListener;
+import hu.bme.aut.hungarianitaliandictionary.backgroundtasks.ItalianToHungarianTranslationFinder;
 import hu.bme.aut.hungarianitaliandictionary.backgroundtasks.ItalianWordChangeListener;
 import hu.bme.aut.hungarianitaliandictionary.backgroundtasks.TranslationAdder;
 import hu.bme.aut.hungarianitaliandictionary.data.DictionaryDatabase;
@@ -169,6 +170,18 @@ public class MainActivity
     public List<ItalianWord> findItalianTranslationsFor(String hungarianWord) {
         try {
             HungarianToItalianTranslationFinder finder = new HungarianToItalianTranslationFinder(hungarianWord, database);
+            finder.execute();
+
+            return finder.get();
+        } catch (ExecutionException | InterruptedException e) {
+            e.printStackTrace();
+            return new ArrayList<>();
+        }
+    }
+
+    public List<HungarianWord> findHungarianTranslationsFor(String italianWord) {
+        try {
+            ItalianToHungarianTranslationFinder finder = new ItalianToHungarianTranslationFinder(italianWord, database);
             finder.execute();
 
             return finder.get();

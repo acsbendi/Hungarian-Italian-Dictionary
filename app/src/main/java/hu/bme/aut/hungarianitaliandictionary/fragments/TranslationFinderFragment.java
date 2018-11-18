@@ -4,7 +4,6 @@ import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
-import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -18,9 +17,12 @@ import java.util.List;
 import hu.bme.aut.hungarianitaliandictionary.MainActivity;
 import hu.bme.aut.hungarianitaliandictionary.R;
 import hu.bme.aut.hungarianitaliandictionary.adapter.TranslationAdapter;
+import hu.bme.aut.hungarianitaliandictionary.data.HungarianWord;
 import hu.bme.aut.hungarianitaliandictionary.data.ItalianWord;
 
-public class TranslationFinderFragment extends Fragment {
+import static hu.bme.aut.hungarianitaliandictionary.data.TranslationDirection.*;
+
+public class TranslationFinderFragment extends TranslationDirectionSettableFragment {
 
     public static String TAG = "TranslationFinderFragment";
 
@@ -47,29 +49,60 @@ public class TranslationFinderFragment extends Fragment {
         searchButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                loadItalianTranslationsInBackground(searchEditText.getText().toString());
+                onSearchButtonClick();
             }
         });
+
+        initTranslationDirectionSwitchButton(rootView);
 
         this.rootView = rootView;
 
         return rootView;
     }
 
-    private void initRecyclerView() {
-        recyclerView = rootView.findViewById(R.id.MainRecyclerView);
-        adapter = new TranslationAdapter<>(activity.getNewItalianWordChangeListener());
-        recyclerView.setLayoutManager(new LinearLayoutManager(activity));
-        recyclerView.setAdapter(adapter);
+    private void onSearchButtonClick(){
+        String searchText = searchEditText.getText().toString();
+        if(selectedTranslationDirection == HUNGARIAN_TO_ITALIAN)
+            loadItalianTranslationsInBackground(searchText);
+        else if(selectedTranslationDirection == ITALIAN_TO_HUNGARIAN)
+            loadHungarianTranslationsInBackground(searchText);
     }
 
     @SuppressWarnings("unchecked")
     private void loadItalianTranslationsInBackground(String hungarianWord) {
-        initRecyclerView();
+        initItalianRecyclerView();
 
         List<ItalianWord> italianTranslations = activity.findItalianTranslationsFor(hungarianWord);
 
         for(ItalianWord italianWord : italianTranslations)
             adapter.addItem(italianWord);
+    }
+
+
+    private void initItalianRecyclerView() {
+        adapter = new TranslationAdapter<>(activity.getNewItalianWordChangeListener());
+        initRecyclerView();
+    }
+
+
+    @SuppressWarnings("unchecked")
+    private void loadHungarianTranslationsInBackground(String italianWord) {
+        initHungarianRecyclerView();
+
+        List<HungarianWord> hungarianTranslations = activity.findHungarianTranslationsFor(italianWord);
+
+        for(HungarianWord hungarianWord : hungarianTranslations)
+            adapter.addItem(hungarianWord);
+    }
+
+    private void initHungarianRecyclerView() {
+        adapter = new TranslationAdapter<>(activity.getNewHungarianWordChangeListener());
+        initRecyclerView();
+    }
+
+    private void initRecyclerView(){
+        recyclerView = rootView.findViewById(R.id.MainRecyclerView);
+        recyclerView.setLayoutManager(new LinearLayoutManager(activity));
+        recyclerView.setAdapter(adapter);
     }
 }

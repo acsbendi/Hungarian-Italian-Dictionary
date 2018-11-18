@@ -24,6 +24,12 @@ public interface HungarianWordDao {
     List<HungarianWord> getAllHungarianWords();
 
     @Query("SELECT hw.id, hw.word, hw.favorite FROM hungarianword AS hw " +
+            "INNER JOIN translation AS t ON t.hungarianWordId = hw.id " +
+            "INNER JOIN italianword AS iw ON t.italianWordId = iw.id " +
+            "WHERE iw.word = :italianWord")
+    List<HungarianWord> findHungarianTranslationsFor(String italianWord);
+
+    @Query("SELECT hw.id, hw.word, hw.favorite FROM hungarianword AS hw " +
             "WHERE word = :hungarianWord")
     List<HungarianWord> findHungarianWord(String hungarianWord);
 }

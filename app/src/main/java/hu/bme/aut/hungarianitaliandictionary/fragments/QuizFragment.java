@@ -5,8 +5,6 @@ import android.graphics.Point;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
-import android.support.v4.app.Fragment;
-import android.support.v7.widget.AppCompatImageButton;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.SwitchCompat;
@@ -20,11 +18,10 @@ import android.widget.Button;
 import hu.bme.aut.hungarianitaliandictionary.MainActivity;
 import hu.bme.aut.hungarianitaliandictionary.R;
 import hu.bme.aut.hungarianitaliandictionary.adapter.QuizAdapter;
-import hu.bme.aut.hungarianitaliandictionary.data.TranslationDirection;
 
 import static hu.bme.aut.hungarianitaliandictionary.data.TranslationDirection.*;
 
-public class QuizFragment extends Fragment {
+public class QuizFragment extends TranslationDirectionSettableFragment {
 
     public static String TAG = "QuizFragment";
 
@@ -33,8 +30,6 @@ public class QuizFragment extends Fragment {
     private MainActivity activity;
     private Button checkButton;
     private SwitchCompat quizTypeSwitchButton;
-    private AppCompatImageButton translationDirectionSwitchButton;
-    private TranslationDirection selectedTranslationDirection = HUNGARIAN_TO_ITALIAN;
 
     @Override
     public void onAttach(Context context){
@@ -63,17 +58,11 @@ public class QuizFragment extends Fragment {
             }
         });
 
-        translationDirectionSwitchButton = rootView.findViewById(R.id.translationDirectionSwitchButton);
-        translationDirectionSwitchButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                onTranslationDirectionSwitchButtonPressed();
-            }
-        });
-
         initQuizTypeSwitchButton(rootView);
 
         initRecyclerView(rootView);
+
+        initTranslationDirectionSwitchButton(rootView);
 
         return rootView;
     }
@@ -123,21 +112,6 @@ public class QuizFragment extends Fragment {
 
     private void checkQuiz(){
 
-    }
-
-    private void onTranslationDirectionSwitchButtonPressed(){
-        if(selectedTranslationDirection == ITALIAN_TO_HUNGARIAN){
-            flipTranslationDirectionSwitchButton(false);
-            selectedTranslationDirection = HUNGARIAN_TO_ITALIAN;
-        }
-        else{
-            flipTranslationDirectionSwitchButton(true);
-            selectedTranslationDirection = ITALIAN_TO_HUNGARIAN;
-        }
-    }
-
-    private void flipTranslationDirectionSwitchButton(boolean right){
-        translationDirectionSwitchButton.setScaleX(right ? -1 : 1);
     }
 
     private void initRecyclerView(View rootView) {
