@@ -2,6 +2,8 @@ package hu.bme.aut.hungarianitaliandictionary.adapter;
 
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,12 +14,19 @@ import java.util.ArrayList;
 import java.util.List;
 
 import hu.bme.aut.hungarianitaliandictionary.R;
+import hu.bme.aut.hungarianitaliandictionary.data.TranslationDirection;
 import hu.bme.aut.hungarianitaliandictionary.data.Word;
 
 public class QuizAdapter
         extends RecyclerView.Adapter<QuizAdapter.QuizWordViewHolder> {
 
     private final List<Word> questionWords = new ArrayList<>();
+    private final List<String> answers = new ArrayList<>();
+    private final TranslationDirection translationDirection;
+
+    public QuizAdapter(TranslationDirection translationDirection){
+        this.translationDirection = translationDirection;
+    }
 
     @NonNull
     @Override
@@ -38,6 +47,7 @@ public class QuizAdapter
 
     public void addItem(Word word) {
         questionWords.add(word);
+        answers.add("");
         notifyItemInserted(questionWords.size() - 1);
     }
 
@@ -46,10 +56,18 @@ public class QuizAdapter
         return questionWords.size();
     }
 
+    public List<String> getAnswers() {
+        return answers;
+    }
+
+    public TranslationDirection getTranslationDirection() {
+        return translationDirection;
+    }
+
     class QuizWordViewHolder extends RecyclerView.ViewHolder {
 
         TextView questionWordTextView;
-        EditText solutionEditText;
+        EditText answerEditText;
 
         Word questionWord;
 
@@ -57,7 +75,24 @@ public class QuizAdapter
             super(itemView);
 
             questionWordTextView = itemView.findViewById(R.id.questionWordTextView);
-            solutionEditText = itemView.findViewById(R.id.solutionEditText);
+            answerEditText = itemView.findViewById(R.id.answerEditText);
+
+            answerEditText.addTextChangedListener(new TextWatcher() {
+                @Override
+                public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+                }
+
+                @Override
+                public void onTextChanged(CharSequence s, int start, int before, int count) {
+                    answers.set(getAdapterPosition(), s.toString());
+                }
+
+                @Override
+                public void afterTextChanged(Editable s) {
+
+                }
+            });
         }
     }
 }

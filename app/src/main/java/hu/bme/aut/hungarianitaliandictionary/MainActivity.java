@@ -24,6 +24,7 @@ import hu.bme.aut.hungarianitaliandictionary.backgroundtasks.HungarianToItalianT
 import hu.bme.aut.hungarianitaliandictionary.backgroundtasks.HungarianWordChangeListener;
 import hu.bme.aut.hungarianitaliandictionary.backgroundtasks.ItalianToHungarianTranslationFinder;
 import hu.bme.aut.hungarianitaliandictionary.backgroundtasks.ItalianWordChangeListener;
+import hu.bme.aut.hungarianitaliandictionary.backgroundtasks.RandomHungarianWordFinder;
 import hu.bme.aut.hungarianitaliandictionary.backgroundtasks.TranslationAdder;
 import hu.bme.aut.hungarianitaliandictionary.data.DictionaryDatabase;
 import hu.bme.aut.hungarianitaliandictionary.data.HungarianWord;
@@ -197,5 +198,17 @@ public class MainActivity
 
     public TranslationAdapter.WordChangeListener<ItalianWord> getNewItalianWordChangeListener(){
         return new ItalianWordChangeListener(database);
+    }
+
+    public List<HungarianWord> getRandomHungarianWords(int resultCount){
+        try {
+            RandomHungarianWordFinder finder = new RandomHungarianWordFinder(resultCount, database);
+            finder.execute();
+
+            return finder.get();
+        } catch (ExecutionException | InterruptedException e) {
+            e.printStackTrace();
+            return new ArrayList<>();
+        }
     }
 }

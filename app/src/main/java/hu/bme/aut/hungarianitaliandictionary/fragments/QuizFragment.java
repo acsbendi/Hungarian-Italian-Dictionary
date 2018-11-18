@@ -15,15 +15,19 @@ import android.view.ViewGroup;
 import android.view.WindowManager;
 import android.widget.Button;
 
+import java.util.List;
+
 import hu.bme.aut.hungarianitaliandictionary.MainActivity;
 import hu.bme.aut.hungarianitaliandictionary.R;
 import hu.bme.aut.hungarianitaliandictionary.adapter.QuizAdapter;
+import hu.bme.aut.hungarianitaliandictionary.data.HungarianWord;
 
 import static hu.bme.aut.hungarianitaliandictionary.data.TranslationDirection.*;
 
 public class QuizFragment extends TranslationDirectionSettableFragment {
 
-    public static String TAG = "QuizFragment";
+    public static final String TAG = "QuizFragment";
+    private static final int DEFAULT_QUIZ_WORD_COUNT = 10;
 
     private RecyclerView recyclerView;
     private QuizAdapter adapter;
@@ -94,7 +98,11 @@ public class QuizFragment extends TranslationDirectionSettableFragment {
     }
 
     private void startNewRandomHungarianToItalianQuiz(){
+        setHungarianToItalianRecyclerViewAdapter();
+        List<HungarianWord> hungarianQuizWords = activity.getRandomHungarianWords(DEFAULT_QUIZ_WORD_COUNT);
 
+        for(HungarianWord hungarianWord : hungarianQuizWords)
+            adapter.addItem(hungarianWord);
     }
 
     private void startNewRandomItalianToHungarianQuiz(){
@@ -114,10 +122,18 @@ public class QuizFragment extends TranslationDirectionSettableFragment {
 
     }
 
+    private void setHungarianToItalianRecyclerViewAdapter() {
+        adapter = new QuizAdapter(HUNGARIAN_TO_ITALIAN);
+        recyclerView.setAdapter(adapter);
+    }
+
+    private void setItalianToHungarianRecyclerViewAdapter() {
+        adapter = new QuizAdapter(ITALIAN_TO_HUNGARIAN);
+        recyclerView.setAdapter(adapter);
+    }
+
     private void initRecyclerView(View rootView) {
         recyclerView = rootView.findViewById(R.id.quizRecyclerView);
-        adapter = new QuizAdapter();
         recyclerView.setLayoutManager(new LinearLayoutManager(activity));
-        recyclerView.setAdapter(adapter);
     }
 }

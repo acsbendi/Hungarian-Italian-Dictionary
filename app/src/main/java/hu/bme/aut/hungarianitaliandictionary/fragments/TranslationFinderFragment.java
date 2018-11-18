@@ -30,7 +30,6 @@ public class TranslationFinderFragment extends TranslationDirectionSettableFragm
     private RecyclerView recyclerView;
     private TranslationAdapter adapter;
     private MainActivity activity;
-    private View rootView;
 
     @Override
     public void onAttach(Context context){
@@ -55,9 +54,14 @@ public class TranslationFinderFragment extends TranslationDirectionSettableFragm
 
         initTranslationDirectionSwitchButton(rootView);
 
-        this.rootView = rootView;
+        initRecyclerView(rootView);
 
         return rootView;
+    }
+
+    private void initRecyclerView(View rootView){
+        recyclerView = rootView.findViewById(R.id.MainRecyclerView);
+        recyclerView.setLayoutManager(new LinearLayoutManager(activity));
     }
 
     private void onSearchButtonClick(){
@@ -70,7 +74,7 @@ public class TranslationFinderFragment extends TranslationDirectionSettableFragm
 
     @SuppressWarnings("unchecked")
     private void loadItalianTranslationsInBackground(String hungarianWord) {
-        initItalianRecyclerView();
+        setItalianRecyclerViewAdapter();
 
         List<ItalianWord> italianTranslations = activity.findItalianTranslationsFor(hungarianWord);
 
@@ -79,15 +83,15 @@ public class TranslationFinderFragment extends TranslationDirectionSettableFragm
     }
 
 
-    private void initItalianRecyclerView() {
+    private void setItalianRecyclerViewAdapter() {
         adapter = new TranslationAdapter<>(activity.getNewItalianWordChangeListener());
-        initRecyclerView();
+        recyclerView.setAdapter(adapter);
     }
 
 
     @SuppressWarnings("unchecked")
     private void loadHungarianTranslationsInBackground(String italianWord) {
-        initHungarianRecyclerView();
+        setHungarianRecyclerViewAdapter();
 
         List<HungarianWord> hungarianTranslations = activity.findHungarianTranslationsFor(italianWord);
 
@@ -95,14 +99,8 @@ public class TranslationFinderFragment extends TranslationDirectionSettableFragm
             adapter.addItem(hungarianWord);
     }
 
-    private void initHungarianRecyclerView() {
+    private void setHungarianRecyclerViewAdapter() {
         adapter = new TranslationAdapter<>(activity.getNewHungarianWordChangeListener());
-        initRecyclerView();
-    }
-
-    private void initRecyclerView(){
-        recyclerView = rootView.findViewById(R.id.MainRecyclerView);
-        recyclerView.setLayoutManager(new LinearLayoutManager(activity));
         recyclerView.setAdapter(adapter);
     }
 }
