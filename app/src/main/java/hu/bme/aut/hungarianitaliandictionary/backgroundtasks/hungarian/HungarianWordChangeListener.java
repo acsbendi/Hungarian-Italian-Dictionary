@@ -1,4 +1,4 @@
-package hu.bme.aut.hungarianitaliandictionary.backgroundtasks;
+package hu.bme.aut.hungarianitaliandictionary.backgroundtasks.hungarian;
 
 import android.os.AsyncTask;
 
