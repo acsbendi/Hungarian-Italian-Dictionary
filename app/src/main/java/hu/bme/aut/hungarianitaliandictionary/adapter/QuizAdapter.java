@@ -1,4 +1,4 @@
-package hu.bme.aut.shoppinglist.adapter;
+package hu.bme.aut.hungarianitaliandictionary.adapter;
 
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
@@ -11,8 +11,8 @@ import android.widget.TextView;
 import java.util.ArrayList;
 import java.util.List;
 
-import hu.bme.aut.shoppinglist.R;
-import hu.bme.aut.shoppinglist.data.Word;
+import hu.bme.aut.hungarianitaliandictionary.R;
+import hu.bme.aut.hungarianitaliandictionary.data.Word;
 
 public class QuizAdapter
         extends RecyclerView.Adapter<QuizAdapter.QuizWordViewHolder> {

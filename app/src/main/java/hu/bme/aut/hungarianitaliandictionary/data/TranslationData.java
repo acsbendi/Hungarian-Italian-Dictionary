@@ -1,4 +1,4 @@
-package hu.bme.aut.shoppinglist.data;
+package hu.bme.aut.hungarianitaliandictionary.data;
 
 public class TranslationData {
     public String hungarianWord;

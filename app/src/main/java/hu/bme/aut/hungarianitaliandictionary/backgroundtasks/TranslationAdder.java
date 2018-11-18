@@ -1,4 +1,4 @@
-package hu.bme.aut.shoppinglist.backgroundtasks;
+package hu.bme.aut.hungarianitaliandictionary.backgroundtasks;
 
 import android.database.sqlite.SQLiteConstraintException;
 import android.os.AsyncTask;
@@ -6,11 +6,11 @@ import android.util.Log;
 
 import java.util.List;
 
-import hu.bme.aut.shoppinglist.data.DictionaryDatabase;
-import hu.bme.aut.shoppinglist.data.HungarianWord;
-import hu.bme.aut.shoppinglist.data.ItalianWord;
-import hu.bme.aut.shoppinglist.data.Translation;
-import hu.bme.aut.shoppinglist.data.TranslationData;
+import hu.bme.aut.hungarianitaliandictionary.data.DictionaryDatabase;
+import hu.bme.aut.hungarianitaliandictionary.data.HungarianWord;
+import hu.bme.aut.hungarianitaliandictionary.data.ItalianWord;
+import hu.bme.aut.hungarianitaliandictionary.data.Translation;
+import hu.bme.aut.hungarianitaliandictionary.data.TranslationData;
 
 public class TranslationAdder extends AsyncTask<Void, Void, Void> {
 

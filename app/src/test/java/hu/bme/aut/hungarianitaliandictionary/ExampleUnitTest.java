@@ -1,4 +1,4 @@
-package hu.bme.aut.shoppinglist;
+package hu.bme.aut.hungarianitaliandictionary;
 
 import org.junit.Test;
 

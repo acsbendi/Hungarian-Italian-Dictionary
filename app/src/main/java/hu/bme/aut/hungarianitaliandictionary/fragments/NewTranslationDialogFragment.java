@@ -1,4 +1,4 @@
-package hu.bme.aut.shoppinglist.fragments;
+package hu.bme.aut.hungarianitaliandictionary.fragments;
 
 import android.app.Dialog;
 import android.content.DialogInterface;
@@ -11,8 +11,8 @@ import android.support.v7.app.AlertDialog;
 import android.view.View;
 import android.widget.EditText;
 
-import hu.bme.aut.shoppinglist.R;
-import hu.bme.aut.shoppinglist.data.TranslationData;
+import hu.bme.aut.hungarianitaliandictionary.R;
+import hu.bme.aut.hungarianitaliandictionary.data.TranslationData;
 
 public class NewTranslationDialogFragment extends DialogFragment {
 

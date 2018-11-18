@@ -1,4 +1,4 @@
-package hu.bme.aut.shoppinglist.data;
+package hu.bme.aut.hungarianitaliandictionary.data;
 
 import android.arch.persistence.room.Dao;
 import android.arch.persistence.room.Delete;
@@ -7,8 +7,6 @@ import android.arch.persistence.room.Query;
 import android.arch.persistence.room.Update;
 
 import java.util.List;
-
-import hu.bme.aut.shoppinglist.data.HungarianWord;
 
 @Dao
 public interface HungarianWordDao {

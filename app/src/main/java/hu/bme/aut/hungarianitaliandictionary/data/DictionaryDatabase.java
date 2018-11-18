@@ -1,4 +1,4 @@
-package hu.bme.aut.shoppinglist.data;
+package hu.bme.aut.hungarianitaliandictionary.data;
 
 import android.arch.persistence.room.Database;
 import android.arch.persistence.room.RoomDatabase;

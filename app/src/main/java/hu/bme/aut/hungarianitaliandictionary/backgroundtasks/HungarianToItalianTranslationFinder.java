@@ -1,11 +1,11 @@
-package hu.bme.aut.shoppinglist.backgroundtasks;
+package hu.bme.aut.hungarianitaliandictionary.backgroundtasks;
 
 import android.os.AsyncTask;
 
 import java.util.List;
 
-import hu.bme.aut.shoppinglist.data.DictionaryDatabase;
-import hu.bme.aut.shoppinglist.data.ItalianWord;
+import hu.bme.aut.hungarianitaliandictionary.data.DictionaryDatabase;
+import hu.bme.aut.hungarianitaliandictionary.data.ItalianWord;
 
 public class HungarianToItalianTranslationFinder extends AsyncTask<Void, Void, List<ItalianWord>> {
 

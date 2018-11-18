@@ -1,4 +1,4 @@
-package hu.bme.aut.shoppinglist.fragments;
+package hu.bme.aut.hungarianitaliandictionary.fragments;
 
 import android.content.Context;
 import android.os.Bundle;
@@ -15,11 +15,10 @@ import android.widget.ImageButton;
 
 import java.util.List;
 
-import hu.bme.aut.shoppinglist.MainActivity;
-import hu.bme.aut.shoppinglist.R;
-import hu.bme.aut.shoppinglist.adapter.TranslationAdapter;
-import hu.bme.aut.shoppinglist.data.ItalianWord;
-import hu.bme.aut.shoppinglist.data.Word;
+import hu.bme.aut.hungarianitaliandictionary.MainActivity;
+import hu.bme.aut.hungarianitaliandictionary.R;
+import hu.bme.aut.hungarianitaliandictionary.adapter.TranslationAdapter;
+import hu.bme.aut.hungarianitaliandictionary.data.ItalianWord;
 
 public class TranslationFinderFragment extends Fragment {
 

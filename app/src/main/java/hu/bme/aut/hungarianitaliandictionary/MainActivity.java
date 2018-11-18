@@ -1,4 +1,4 @@
-package hu.bme.aut.shoppinglist;
+package hu.bme.aut.hungarianitaliandictionary;
 
 import android.app.AlertDialog;
 import android.arch.persistence.room.Room;
@@ -18,17 +18,17 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.ExecutionException;
 
-import hu.bme.aut.shoppinglist.adapter.FragmentViewPagerAdapter;
-import hu.bme.aut.shoppinglist.adapter.TranslationAdapter;
-import hu.bme.aut.shoppinglist.backgroundtasks.HungarianToItalianTranslationFinder;
-import hu.bme.aut.shoppinglist.backgroundtasks.HungarianWordChangeListener;
-import hu.bme.aut.shoppinglist.backgroundtasks.ItalianWordChangeListener;
-import hu.bme.aut.shoppinglist.backgroundtasks.TranslationAdder;
-import hu.bme.aut.shoppinglist.data.DictionaryDatabase;
-import hu.bme.aut.shoppinglist.data.HungarianWord;
-import hu.bme.aut.shoppinglist.data.ItalianWord;
-import hu.bme.aut.shoppinglist.data.TranslationData;
-import hu.bme.aut.shoppinglist.fragments.NewTranslationDialogFragment;
+import hu.bme.aut.hungarianitaliandictionary.adapter.FragmentViewPagerAdapter;
+import hu.bme.aut.hungarianitaliandictionary.adapter.TranslationAdapter;
+import hu.bme.aut.hungarianitaliandictionary.backgroundtasks.HungarianToItalianTranslationFinder;
+import hu.bme.aut.hungarianitaliandictionary.backgroundtasks.HungarianWordChangeListener;
+import hu.bme.aut.hungarianitaliandictionary.backgroundtasks.ItalianWordChangeListener;
+import hu.bme.aut.hungarianitaliandictionary.backgroundtasks.TranslationAdder;
+import hu.bme.aut.hungarianitaliandictionary.data.DictionaryDatabase;
+import hu.bme.aut.hungarianitaliandictionary.data.HungarianWord;
+import hu.bme.aut.hungarianitaliandictionary.data.ItalianWord;
+import hu.bme.aut.hungarianitaliandictionary.data.TranslationData;
+import hu.bme.aut.hungarianitaliandictionary.fragments.NewTranslationDialogFragment;
 
 public class MainActivity
         extends AppCompatActivity

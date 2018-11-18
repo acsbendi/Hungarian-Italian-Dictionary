@@ -1,4 +1,4 @@
-package hu.bme.aut.shoppinglist;
+package hu.bme.aut.hungarianitaliandictionary;
 
 import android.content.Context;
 import android.support.test.InstrumentationRegistry;

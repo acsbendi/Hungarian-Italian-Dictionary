@@ -1,10 +1,10 @@
-package hu.bme.aut.shoppinglist.backgroundtasks;
+package hu.bme.aut.hungarianitaliandictionary.backgroundtasks;
 
 import android.os.AsyncTask;
 
-import hu.bme.aut.shoppinglist.adapter.TranslationAdapter;
-import hu.bme.aut.shoppinglist.data.DictionaryDatabase;
-import hu.bme.aut.shoppinglist.data.HungarianWord;
+import hu.bme.aut.hungarianitaliandictionary.adapter.TranslationAdapter;
+import hu.bme.aut.hungarianitaliandictionary.data.DictionaryDatabase;
+import hu.bme.aut.hungarianitaliandictionary.data.HungarianWord;
 
 public class HungarianWordChangeListener
         extends AsyncTask<HungarianWord, Void, Void>

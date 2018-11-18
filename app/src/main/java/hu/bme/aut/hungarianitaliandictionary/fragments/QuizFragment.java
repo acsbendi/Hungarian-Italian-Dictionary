@@ -1,4 +1,4 @@
-package hu.bme.aut.shoppinglist.fragments;
+package hu.bme.aut.hungarianitaliandictionary.fragments;
 
 import android.content.Context;
 import android.graphics.Point;
@@ -10,23 +10,19 @@ import android.support.v7.widget.AppCompatImageButton;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.SwitchCompat;
-import android.util.DisplayMetrics;
-import android.util.Log;
-import android.util.TypedValue;
 import android.view.Display;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.WindowManager;
 import android.widget.Button;
-import android.widget.FrameLayout;
 
-import hu.bme.aut.shoppinglist.MainActivity;
-import hu.bme.aut.shoppinglist.R;
-import hu.bme.aut.shoppinglist.adapter.QuizAdapter;
-import hu.bme.aut.shoppinglist.data.TranslationDirection;
+import hu.bme.aut.hungarianitaliandictionary.MainActivity;
+import hu.bme.aut.hungarianitaliandictionary.R;
+import hu.bme.aut.hungarianitaliandictionary.adapter.QuizAdapter;
+import hu.bme.aut.hungarianitaliandictionary.data.TranslationDirection;
 
-import static hu.bme.aut.shoppinglist.data.TranslationDirection.*;
+import static hu.bme.aut.hungarianitaliandictionary.data.TranslationDirection.*;
 
 public class QuizFragment extends Fragment {
 

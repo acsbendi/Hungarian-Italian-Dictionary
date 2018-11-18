@@ -1,4 +1,4 @@
-package hu.bme.aut.shoppinglist.adapter;
+package hu.bme.aut.hungarianitaliandictionary.adapter;
 
 import android.content.Context;
 import android.support.annotation.Nullable;
@@ -6,9 +6,9 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 
-import hu.bme.aut.shoppinglist.R;
-import hu.bme.aut.shoppinglist.fragments.QuizFragment;
-import hu.bme.aut.shoppinglist.fragments.TranslationFinderFragment;
+import hu.bme.aut.hungarianitaliandictionary.R;
+import hu.bme.aut.hungarianitaliandictionary.fragments.QuizFragment;
+import hu.bme.aut.hungarianitaliandictionary.fragments.TranslationFinderFragment;
 
 public class FragmentViewPagerAdapter extends FragmentPagerAdapter {
 
