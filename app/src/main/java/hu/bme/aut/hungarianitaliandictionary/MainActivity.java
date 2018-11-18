@@ -20,11 +20,14 @@ import java.util.concurrent.ExecutionException;
 
 import hu.bme.aut.hungarianitaliandictionary.adapter.FragmentViewPagerAdapter;
 import hu.bme.aut.hungarianitaliandictionary.adapter.TranslationAdapter;
+import hu.bme.aut.hungarianitaliandictionary.backgroundtasks.FavoriteHungarianWordFinder;
+import hu.bme.aut.hungarianitaliandictionary.backgroundtasks.FavoriteItalianWordFinder;
 import hu.bme.aut.hungarianitaliandictionary.backgroundtasks.HungarianToItalianTranslationFinder;
 import hu.bme.aut.hungarianitaliandictionary.backgroundtasks.HungarianWordChangeListener;
 import hu.bme.aut.hungarianitaliandictionary.backgroundtasks.ItalianToHungarianTranslationFinder;
 import hu.bme.aut.hungarianitaliandictionary.backgroundtasks.ItalianWordChangeListener;
 import hu.bme.aut.hungarianitaliandictionary.backgroundtasks.RandomHungarianWordFinder;
+import hu.bme.aut.hungarianitaliandictionary.backgroundtasks.RandomItalianWordFinder;
 import hu.bme.aut.hungarianitaliandictionary.backgroundtasks.TranslationAdder;
 import hu.bme.aut.hungarianitaliandictionary.data.DictionaryDatabase;
 import hu.bme.aut.hungarianitaliandictionary.data.HungarianWord;
@@ -203,6 +206,42 @@ public class MainActivity
     public List<HungarianWord> getRandomHungarianWords(int resultCount){
         try {
             RandomHungarianWordFinder finder = new RandomHungarianWordFinder(resultCount, database);
+            finder.execute();
+
+            return finder.get();
+        } catch (ExecutionException | InterruptedException e) {
+            e.printStackTrace();
+            return new ArrayList<>();
+        }
+    }
+
+    public List<ItalianWord> getRandomItalianWords(int resultCount){
+        try {
+            RandomItalianWordFinder finder = new RandomItalianWordFinder(resultCount, database);
+            finder.execute();
+
+            return finder.get();
+        } catch (ExecutionException | InterruptedException e) {
+            e.printStackTrace();
+            return new ArrayList<>();
+        }
+    }
+
+    public List<ItalianWord> getFavoriteItalianWords(){
+        try {
+            FavoriteItalianWordFinder finder = new FavoriteItalianWordFinder(database);
+            finder.execute();
+
+            return finder.get();
+        } catch (ExecutionException | InterruptedException e) {
+            e.printStackTrace();
+            return new ArrayList<>();
+        }
+    }
+
+    public List<HungarianWord> getFavoriteHungarianWords(){
+        try {
+            FavoriteHungarianWordFinder finder = new FavoriteHungarianWordFinder(database);
             finder.execute();
 
             return finder.get();

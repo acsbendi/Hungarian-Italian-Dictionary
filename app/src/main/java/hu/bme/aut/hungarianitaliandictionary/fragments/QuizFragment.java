@@ -21,6 +21,7 @@ import hu.bme.aut.hungarianitaliandictionary.MainActivity;
 import hu.bme.aut.hungarianitaliandictionary.R;
 import hu.bme.aut.hungarianitaliandictionary.adapter.QuizAdapter;
 import hu.bme.aut.hungarianitaliandictionary.data.HungarianWord;
+import hu.bme.aut.hungarianitaliandictionary.data.ItalianWord;
 
 import static hu.bme.aut.hungarianitaliandictionary.data.TranslationDirection.*;
 
@@ -106,15 +107,28 @@ public class QuizFragment extends TranslationDirectionSettableFragment {
     }
 
     private void startNewRandomItalianToHungarianQuiz(){
+        setItalianToHungarianRecyclerViewAdapter();
+        List<ItalianWord> italianQuizWords = activity.getRandomItalianWords(DEFAULT_QUIZ_WORD_COUNT);
 
+        for(ItalianWord italianWord : italianQuizWords)
+            adapter.addItem(italianWord);
     }
 
     private void startNewFavoritesHungarianToItalianQuiz(){
+        setHungarianToItalianRecyclerViewAdapter();
+        List<HungarianWord> hungarianQuizWords = activity.getFavoriteHungarianWords();
+
+        for(HungarianWord hungarianWord : hungarianQuizWords)
+            adapter.addItem(hungarianWord);
 
     }
 
     private void startNewFavoritesItalianToHungarianQuiz(){
+        setItalianToHungarianRecyclerViewAdapter();
+        List<ItalianWord> italianQuizWords = activity.getFavoriteItalianWords();
 
+        for(ItalianWord italianWord : italianQuizWords)
+            adapter.addItem(italianWord);
     }
 
 

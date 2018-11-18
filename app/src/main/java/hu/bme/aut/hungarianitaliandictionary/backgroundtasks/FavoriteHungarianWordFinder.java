@@ -7,19 +7,18 @@ import java.util.List;
 import hu.bme.aut.hungarianitaliandictionary.data.DictionaryDatabase;
 import hu.bme.aut.hungarianitaliandictionary.data.HungarianWord;
 
-public class RandomHungarianWordFinder
-    extends AsyncTask<Void, Void, List<HungarianWord>> {
+public class FavoriteHungarianWordFinder
+        extends AsyncTask<Void, Void, List<HungarianWord>> {
 
-    private final int resultCount;
     private final DictionaryDatabase database;
 
-    public RandomHungarianWordFinder(int resultCount, DictionaryDatabase database){
-        this.resultCount = resultCount;
+    public FavoriteHungarianWordFinder(DictionaryDatabase database){
         this.database = database;
     }
 
     @Override
     protected List<HungarianWord> doInBackground(Void... voids) {
-        return database.hungarianWordDao().findRandomHungarianWords(resultCount);
+        return database.hungarianWordDao().findFavoriteHungarianWords();
     }
 }
+

@@ -32,4 +32,12 @@ public interface ItalianWordDao {
     @Query("SELECT iw.id, iw.word, iw.favorite FROM italianword AS iw " +
             "WHERE word = :italianWord")
     List<ItalianWord> findItalianWord(String italianWord);
+
+    @Query("SELECT iw.id, iw.word, iw.favorite FROM italianword AS iw " +
+            "ORDER BY RANDOM() LIMIT :resultCount")
+    List<ItalianWord> findRandomItalianWords(int resultCount);
+
+    @Query("SELECT iw.id, iw.word, iw.favorite FROM italianword AS iw " +
+            "WHERE iw.favorite = 1")
+    List<ItalianWord> findFavoriteItalianWords();
 }

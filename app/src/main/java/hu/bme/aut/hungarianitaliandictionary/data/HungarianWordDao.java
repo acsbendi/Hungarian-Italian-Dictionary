@@ -36,4 +36,8 @@ public interface HungarianWordDao {
     @Query("SELECT hw.id, hw.word, hw.favorite FROM hungarianword AS hw " +
             "ORDER BY RANDOM() LIMIT :resultCount")
     List<HungarianWord> findRandomHungarianWords(int resultCount);
+
+    @Query("SELECT hw.id, hw.word, hw.favorite FROM hungarianword AS hw " +
+            "WHERE hw.favorite = 1")
+    List<HungarianWord> findFavoriteHungarianWords();
 }
