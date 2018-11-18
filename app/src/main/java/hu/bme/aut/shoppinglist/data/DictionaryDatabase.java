@@ -5,7 +5,7 @@ import android.arch.persistence.room.RoomDatabase;
 
 @Database(
         entities = {ItalianWord.class, HungarianWord.class, Translation.class},
-        version = 4,
+        version = 5,
         exportSchema = false
 )
 public abstract class DictionaryDatabase extends RoomDatabase {
