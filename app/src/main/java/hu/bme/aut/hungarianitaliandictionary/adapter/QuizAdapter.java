@@ -13,9 +13,12 @@ import android.widget.TextView;
 import java.util.ArrayList;
 import java.util.List;
 
+import hu.bme.aut.hungarianitaliandictionary.MainActivity;
 import hu.bme.aut.hungarianitaliandictionary.R;
 import hu.bme.aut.hungarianitaliandictionary.data.TranslationDirection;
 import hu.bme.aut.hungarianitaliandictionary.data.Word;
+
+import static hu.bme.aut.hungarianitaliandictionary.data.TranslationDirection.*;
 
 public class QuizAdapter
         extends RecyclerView.Adapter<QuizAdapter.QuizWordViewHolder> {
@@ -23,9 +26,11 @@ public class QuizAdapter
     private final List<Word> questionWords = new ArrayList<>();
     private final List<String> answers = new ArrayList<>();
     private final TranslationDirection translationDirection;
+    private final MainActivity activity;
 
-    public QuizAdapter(TranslationDirection translationDirection){
+    public QuizAdapter(TranslationDirection translationDirection, MainActivity activity){
         this.translationDirection = translationDirection;
+        this.activity = activity;
     }
 
     @NonNull
@@ -51,17 +56,27 @@ public class QuizAdapter
         notifyItemInserted(questionWords.size() - 1);
     }
 
+    public int getCorrectAnswerCount(){
+        int correctAnswerCount = 0;
+
+        if(translationDirection == ITALIAN_TO_HUNGARIAN){
+            for(int i = 0; i < questionWords.size(); ++i){
+                if(activity.correctTranslation(answers.get(i), questionWords.get(i).word))
+                    ++correctAnswerCount;
+            }
+        } else if(translationDirection == HUNGARIAN_TO_ITALIAN){
+            for(int i = 0; i < questionWords.size(); ++i){
+                if(activity.correctTranslation(questionWords.get(i).word, answers.get(i)))
+                    ++correctAnswerCount;
+            }
+        }
+
+        return correctAnswerCount;
+    }
+
     @Override
     public int getItemCount() {
         return questionWords.size();
-    }
-
-    public List<String> getAnswers() {
-        return answers;
-    }
-
-    public TranslationDirection getTranslationDirection() {
-        return translationDirection;
     }
 
     class QuizWordViewHolder extends RecyclerView.ViewHolder {

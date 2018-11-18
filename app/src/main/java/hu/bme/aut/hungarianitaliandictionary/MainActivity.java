@@ -29,6 +29,7 @@ import hu.bme.aut.hungarianitaliandictionary.backgroundtasks.ItalianWordChangeLi
 import hu.bme.aut.hungarianitaliandictionary.backgroundtasks.RandomHungarianWordFinder;
 import hu.bme.aut.hungarianitaliandictionary.backgroundtasks.RandomItalianWordFinder;
 import hu.bme.aut.hungarianitaliandictionary.backgroundtasks.TranslationAdder;
+import hu.bme.aut.hungarianitaliandictionary.backgroundtasks.TranslationChecker;
 import hu.bme.aut.hungarianitaliandictionary.data.DictionaryDatabase;
 import hu.bme.aut.hungarianitaliandictionary.data.HungarianWord;
 import hu.bme.aut.hungarianitaliandictionary.data.ItalianWord;
@@ -248,6 +249,19 @@ public class MainActivity
         } catch (ExecutionException | InterruptedException e) {
             e.printStackTrace();
             return new ArrayList<>();
+        }
+    }
+
+    public boolean correctTranslation(String hungarianWord, String italianWord){
+        try {
+            TranslationChecker finder =
+                    new TranslationChecker(hungarianWord, italianWord, database);
+            finder.execute();
+
+            return finder.get();
+        } catch (ExecutionException | InterruptedException e) {
+            e.printStackTrace();
+            return false;
         }
     }
 }

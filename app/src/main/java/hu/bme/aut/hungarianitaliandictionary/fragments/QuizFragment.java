@@ -14,6 +14,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.WindowManager;
 import android.widget.Button;
+import android.widget.Toast;
 
 import java.util.List;
 
@@ -133,16 +134,18 @@ public class QuizFragment extends TranslationDirectionSettableFragment {
 
 
     private void checkQuiz(){
-
+        Toast.makeText(activity,
+                String.valueOf(adapter.getCorrectAnswerCount()), Toast.LENGTH_SHORT)
+                .show(); //TODO make a result screen
     }
 
     private void setHungarianToItalianRecyclerViewAdapter() {
-        adapter = new QuizAdapter(HUNGARIAN_TO_ITALIAN);
+        adapter = new QuizAdapter(HUNGARIAN_TO_ITALIAN, activity);
         recyclerView.setAdapter(adapter);
     }
 
     private void setItalianToHungarianRecyclerViewAdapter() {
-        adapter = new QuizAdapter(ITALIAN_TO_HUNGARIAN);
+        adapter = new QuizAdapter(ITALIAN_TO_HUNGARIAN, activity);
         recyclerView.setAdapter(adapter);
     }
 
