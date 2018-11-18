@@ -6,13 +6,22 @@
     android:paddingBottom="8dp"
     android:paddingLeft="16dp"
     android:paddingRight="16dp"
-    android:paddingTop="8dp">
+    android:paddingTop="8dp"
+    android:weightSum="9">
 
     <TextView
         android:id="@+id/wordTextView"
-        android:layout_width="match_parent"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:gravity="center"
-        android:textSize="18sp"/>
+        android:textSize="18sp"
+        android:layout_weight="9"/>
+
+    <CheckBox
+        android:id="@+id/favoriteButton"
+        android:theme="@style/FavoriteTranslationStar"
+        style="@android:style/Widget.DeviceDefault.CompoundButton.Star"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
 
 </LinearLayout>
