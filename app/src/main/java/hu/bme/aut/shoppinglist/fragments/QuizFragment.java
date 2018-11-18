@@ -1,6 +1,7 @@
 package hu.bme.aut.shoppinglist.fragments;
 
 import android.content.Context;
+import android.graphics.Point;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -9,10 +10,16 @@ import android.support.v7.widget.AppCompatImageButton;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.SwitchCompat;
+import android.util.DisplayMetrics;
+import android.util.Log;
+import android.util.TypedValue;
+import android.view.Display;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.WindowManager;
 import android.widget.Button;
+import android.widget.FrameLayout;
 
 import hu.bme.aut.shoppinglist.MainActivity;
 import hu.bme.aut.shoppinglist.R;
@@ -68,11 +75,25 @@ public class QuizFragment extends Fragment {
             }
         });
 
-        quizTypeSwitchButton = rootView.findViewById(R.id.quizTypeSwitchButton);
+        initQuizTypeSwitchButton(rootView);
 
         initRecyclerView(rootView);
 
         return rootView;
+    }
+
+    private void initQuizTypeSwitchButton(View rootView){
+        quizTypeSwitchButton = rootView.findViewById(R.id.quizTypeSwitchButton);
+
+        WindowManager wm = (WindowManager) activity.getSystemService(Context.WINDOW_SERVICE);
+        if(wm != null){
+            Display display = wm.getDefaultDisplay();
+            Point size = new Point();
+            display.getSize(size);
+            int width = size.x;
+
+            quizTypeSwitchButton.setSwitchMinWidth((int)(width*0.14));
+        }
     }
 
     private void startQuiz(){
