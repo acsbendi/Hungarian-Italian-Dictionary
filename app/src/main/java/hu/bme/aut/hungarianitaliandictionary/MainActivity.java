@@ -31,9 +31,9 @@ import hu.bme.aut.hungarianitaliandictionary.backgroundtasks.italian.RandomItali
 import hu.bme.aut.hungarianitaliandictionary.backgroundtasks.translation.TranslationAdder;
 import hu.bme.aut.hungarianitaliandictionary.backgroundtasks.translation.TranslationChecker;
 import hu.bme.aut.hungarianitaliandictionary.data.DictionaryDatabase;
-import hu.bme.aut.hungarianitaliandictionary.data.HungarianWord;
-import hu.bme.aut.hungarianitaliandictionary.data.ItalianWord;
-import hu.bme.aut.hungarianitaliandictionary.data.TranslationData;
+import hu.bme.aut.hungarianitaliandictionary.data.entities.HungarianWord;
+import hu.bme.aut.hungarianitaliandictionary.data.entities.ItalianWord;
+import hu.bme.aut.hungarianitaliandictionary.data.entities.TranslationData;
 import hu.bme.aut.hungarianitaliandictionary.fragments.NewTranslationDialogFragment;
 
 public class MainActivity

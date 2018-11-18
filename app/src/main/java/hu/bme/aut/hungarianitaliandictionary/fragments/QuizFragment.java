@@ -21,10 +21,10 @@ import java.util.List;
 import hu.bme.aut.hungarianitaliandictionary.MainActivity;
 import hu.bme.aut.hungarianitaliandictionary.R;
 import hu.bme.aut.hungarianitaliandictionary.adapters.QuizAdapter;
-import hu.bme.aut.hungarianitaliandictionary.data.HungarianWord;
-import hu.bme.aut.hungarianitaliandictionary.data.ItalianWord;
+import hu.bme.aut.hungarianitaliandictionary.data.entities.HungarianWord;
+import hu.bme.aut.hungarianitaliandictionary.data.entities.ItalianWord;
 
-import static hu.bme.aut.hungarianitaliandictionary.data.TranslationDirection.*;
+import static hu.bme.aut.hungarianitaliandictionary.data.entities.TranslationDirection.*;
 
 public class QuizFragment extends TranslationDirectionSettableFragment {
 

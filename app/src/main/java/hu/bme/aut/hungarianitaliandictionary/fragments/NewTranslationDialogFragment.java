@@ -12,7 +12,7 @@ import android.view.View;
 import android.widget.EditText;
 
 import hu.bme.aut.hungarianitaliandictionary.R;
-import hu.bme.aut.hungarianitaliandictionary.data.TranslationData;
+import hu.bme.aut.hungarianitaliandictionary.data.entities.TranslationData;
 
 public class NewTranslationDialogFragment extends DialogFragment {
 

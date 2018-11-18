@@ -7,10 +7,10 @@ import android.util.Log;
 import java.util.List;
 
 import hu.bme.aut.hungarianitaliandictionary.data.DictionaryDatabase;
-import hu.bme.aut.hungarianitaliandictionary.data.HungarianWord;
-import hu.bme.aut.hungarianitaliandictionary.data.ItalianWord;
-import hu.bme.aut.hungarianitaliandictionary.data.Translation;
-import hu.bme.aut.hungarianitaliandictionary.data.TranslationData;
+import hu.bme.aut.hungarianitaliandictionary.data.entities.HungarianWord;
+import hu.bme.aut.hungarianitaliandictionary.data.entities.ItalianWord;
+import hu.bme.aut.hungarianitaliandictionary.data.entities.Translation;
+import hu.bme.aut.hungarianitaliandictionary.data.entities.TranslationData;
 
 public class TranslationAdder extends AsyncTask<Void, Void, Void> {
 

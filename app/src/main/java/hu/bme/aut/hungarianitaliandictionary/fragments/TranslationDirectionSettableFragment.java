@@ -5,9 +5,9 @@ import android.support.v7.widget.AppCompatImageButton;
 import android.view.View;
 
 import hu.bme.aut.hungarianitaliandictionary.R;
-import hu.bme.aut.hungarianitaliandictionary.data.TranslationDirection;
+import hu.bme.aut.hungarianitaliandictionary.data.entities.TranslationDirection;
 
-import static hu.bme.aut.hungarianitaliandictionary.data.TranslationDirection.*;
+import static hu.bme.aut.hungarianitaliandictionary.data.entities.TranslationDirection.*;
 
 public abstract class TranslationDirectionSettableFragment extends Fragment {
 

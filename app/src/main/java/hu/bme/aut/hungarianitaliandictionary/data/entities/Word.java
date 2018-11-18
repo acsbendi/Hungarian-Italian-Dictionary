@@ -1,4 +1,4 @@
-package hu.bme.aut.hungarianitaliandictionary.data;
+package hu.bme.aut.hungarianitaliandictionary.data.entities;
 
 
 import android.arch.persistence.room.ColumnInfo;

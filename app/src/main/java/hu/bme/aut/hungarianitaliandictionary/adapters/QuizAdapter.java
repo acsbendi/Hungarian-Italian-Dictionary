@@ -15,10 +15,10 @@ import java.util.List;
 
 import hu.bme.aut.hungarianitaliandictionary.MainActivity;
 import hu.bme.aut.hungarianitaliandictionary.R;
-import hu.bme.aut.hungarianitaliandictionary.data.TranslationDirection;
-import hu.bme.aut.hungarianitaliandictionary.data.Word;
+import hu.bme.aut.hungarianitaliandictionary.data.entities.TranslationDirection;
+import hu.bme.aut.hungarianitaliandictionary.data.entities.Word;
 
-import static hu.bme.aut.hungarianitaliandictionary.data.TranslationDirection.*;
+import static hu.bme.aut.hungarianitaliandictionary.data.entities.TranslationDirection.*;
 
 public class QuizAdapter
         extends RecyclerView.Adapter<QuizAdapter.QuizWordViewHolder> {

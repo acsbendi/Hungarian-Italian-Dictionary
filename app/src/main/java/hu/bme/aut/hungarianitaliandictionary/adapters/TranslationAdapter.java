@@ -12,7 +12,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import hu.bme.aut.hungarianitaliandictionary.R;
-import hu.bme.aut.hungarianitaliandictionary.data.Word;
+import hu.bme.aut.hungarianitaliandictionary.data.entities.Word;
 
 public class TranslationAdapter<ShownWordType extends Word>
         extends RecyclerView.Adapter<TranslationAdapter.TranslationViewHolder<ShownWordType>> {

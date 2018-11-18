@@ -5,7 +5,7 @@ import android.os.AsyncTask;
 import java.util.List;
 
 import hu.bme.aut.hungarianitaliandictionary.data.DictionaryDatabase;
-import hu.bme.aut.hungarianitaliandictionary.data.HungarianWord;
+import hu.bme.aut.hungarianitaliandictionary.data.entities.HungarianWord;
 
 public class ItalianToHungarianTranslationFinder
         extends AsyncTask<Void, Void, List<HungarianWord>> {

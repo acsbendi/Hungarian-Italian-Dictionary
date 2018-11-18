@@ -5,7 +5,7 @@ import android.os.AsyncTask;
 import java.util.List;
 
 import hu.bme.aut.hungarianitaliandictionary.data.DictionaryDatabase;
-import hu.bme.aut.hungarianitaliandictionary.data.ItalianWord;
+import hu.bme.aut.hungarianitaliandictionary.data.entities.ItalianWord;
 
 public class FavoriteItalianWordFinder
         extends AsyncTask<Void, Void, List<ItalianWord>> {
