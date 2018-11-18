@@ -18,7 +18,7 @@
         android:layout_weight="9"/>
 
     <CheckBox
-        android:id="@+id/favoriteButton"
+        android:id="@+id/favoriteCheckBox"
         android:theme="@style/FavoriteTranslationStar"
         style="@android:style/Widget.DeviceDefault.CompoundButton.Star"
         android:layout_width="wrap_content"
