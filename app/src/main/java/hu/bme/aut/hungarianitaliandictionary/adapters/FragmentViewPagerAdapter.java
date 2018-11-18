@@ -1,4 +1,4 @@
-package hu.bme.aut.hungarianitaliandictionary.adapter;
+package hu.bme.aut.hungarianitaliandictionary.adapters;
 
 import android.content.Context;
 import android.support.annotation.Nullable;

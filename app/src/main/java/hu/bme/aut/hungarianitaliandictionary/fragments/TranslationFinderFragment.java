@@ -16,7 +16,7 @@ import java.util.List;
 
 import hu.bme.aut.hungarianitaliandictionary.MainActivity;
 import hu.bme.aut.hungarianitaliandictionary.R;
-import hu.bme.aut.hungarianitaliandictionary.adapter.TranslationAdapter;
+import hu.bme.aut.hungarianitaliandictionary.adapters.TranslationAdapter;
 import hu.bme.aut.hungarianitaliandictionary.data.HungarianWord;
 import hu.bme.aut.hungarianitaliandictionary.data.ItalianWord;
 

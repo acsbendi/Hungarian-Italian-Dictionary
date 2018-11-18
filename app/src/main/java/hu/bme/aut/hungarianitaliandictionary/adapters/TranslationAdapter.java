@@ -1,4 +1,4 @@
-package hu.bme.aut.hungarianitaliandictionary.adapter;
+package hu.bme.aut.hungarianitaliandictionary.adapters;
 
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;

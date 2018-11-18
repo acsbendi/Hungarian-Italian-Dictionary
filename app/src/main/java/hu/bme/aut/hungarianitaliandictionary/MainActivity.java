@@ -18,8 +18,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.ExecutionException;
 
-import hu.bme.aut.hungarianitaliandictionary.adapter.FragmentViewPagerAdapter;
-import hu.bme.aut.hungarianitaliandictionary.adapter.TranslationAdapter;
+import hu.bme.aut.hungarianitaliandictionary.adapters.FragmentViewPagerAdapter;
+import hu.bme.aut.hungarianitaliandictionary.adapters.TranslationAdapter;
 import hu.bme.aut.hungarianitaliandictionary.backgroundtasks.hungarian.FavoriteHungarianWordFinder;
 import hu.bme.aut.hungarianitaliandictionary.backgroundtasks.italian.FavoriteItalianWordFinder;
 import hu.bme.aut.hungarianitaliandictionary.backgroundtasks.translation.HungarianToItalianTranslationFinder;

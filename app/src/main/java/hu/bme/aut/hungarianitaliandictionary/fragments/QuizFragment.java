@@ -20,7 +20,7 @@ import java.util.List;
 
 import hu.bme.aut.hungarianitaliandictionary.MainActivity;
 import hu.bme.aut.hungarianitaliandictionary.R;
-import hu.bme.aut.hungarianitaliandictionary.adapter.QuizAdapter;
+import hu.bme.aut.hungarianitaliandictionary.adapters.QuizAdapter;
 import hu.bme.aut.hungarianitaliandictionary.data.HungarianWord;
 import hu.bme.aut.hungarianitaliandictionary.data.ItalianWord;
 

@@ -2,7 +2,7 @@ package hu.bme.aut.hungarianitaliandictionary.backgroundtasks.italian;
 
 import android.os.AsyncTask;
 
-import hu.bme.aut.hungarianitaliandictionary.adapter.TranslationAdapter;
+import hu.bme.aut.hungarianitaliandictionary.adapters.TranslationAdapter;
 import hu.bme.aut.hungarianitaliandictionary.data.DictionaryDatabase;
 import hu.bme.aut.hungarianitaliandictionary.data.ItalianWord;
 
