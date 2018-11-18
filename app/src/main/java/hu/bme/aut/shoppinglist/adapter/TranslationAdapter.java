@@ -14,39 +14,39 @@ import java.util.List;
 import hu.bme.aut.shoppinglist.R;
 import hu.bme.aut.shoppinglist.data.Word;
 
-public class TranslationAdapter
-        extends RecyclerView.Adapter<TranslationAdapter.TranslationViewHolder> {
+public class TranslationAdapter<ShownWordType extends Word>
+        extends RecyclerView.Adapter<TranslationAdapter.TranslationViewHolder<ShownWordType>> {
 
-    public interface WordFavoriteSetListener{
-        void onWordChanged(Word word);
+    public interface WordChangeListener<ShownWordType extends Word>{
+        void onWordChanged(ShownWordType word);
     }
 
-    private final List<Word> words = new ArrayList<>();
-    private WordFavoriteSetListener listener;
+    private final List<ShownWordType> words = new ArrayList<>();
+    private final WordChangeListener<ShownWordType> listener;
 
-    public TranslationAdapter(WordFavoriteSetListener listener) {
+    public TranslationAdapter(WordChangeListener<ShownWordType> listener) {
         this.listener = listener;
     }
 
     @NonNull
     @Override
-    public TranslationViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+    public TranslationViewHolder<ShownWordType> onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View itemView = LayoutInflater
                 .from(parent.getContext())
                 .inflate(R.layout.word, parent, false);
-        return new TranslationViewHolder(itemView);
+        return new TranslationViewHolder<>(itemView, listener);
     }
 
     @Override
-    public void onBindViewHolder(@NonNull TranslationViewHolder holder, int position) {
-        Word word = words.get(position);
+    public void onBindViewHolder(@NonNull TranslationViewHolder<ShownWordType> holder, int position) {
+        ShownWordType word = words.get(position);
         holder.wordTextView.setText(word.word);
         holder.favoriteCheckBox.setChecked(word.favorite);
 
         holder.word = word;
     }
 
-    public void addItem(Word word) {
+    public void addItem(ShownWordType word) {
         words.add(word);
         notifyItemInserted(words.size() - 1);
     }
@@ -56,14 +56,14 @@ public class TranslationAdapter
         return words.size();
     }
 
-    class TranslationViewHolder extends RecyclerView.ViewHolder {
+    static class TranslationViewHolder<ShownWordType extends Word> extends RecyclerView.ViewHolder {
 
         TextView wordTextView;
         CheckBox favoriteCheckBox;
 
-        Word word;
+        ShownWordType word;
 
-        TranslationViewHolder(View itemView) {
+        TranslationViewHolder(View itemView, final WordChangeListener<ShownWordType> listener) {
             super(itemView);
             wordTextView = itemView.findViewById(R.id.wordTextView);
             favoriteCheckBox = itemView.findViewById(R.id.favoriteCheckBox);

@@ -19,7 +19,10 @@ import java.util.List;
 import java.util.concurrent.ExecutionException;
 
 import hu.bme.aut.shoppinglist.adapter.FragmentViewPagerAdapter;
+import hu.bme.aut.shoppinglist.adapter.TranslationAdapter;
 import hu.bme.aut.shoppinglist.backgroundtasks.HungarianToItalianTranslationFinder;
+import hu.bme.aut.shoppinglist.backgroundtasks.HungarianWordChangeListener;
+import hu.bme.aut.shoppinglist.backgroundtasks.ItalianWordChangeListener;
 import hu.bme.aut.shoppinglist.backgroundtasks.TranslationAdder;
 import hu.bme.aut.shoppinglist.data.DictionaryDatabase;
 import hu.bme.aut.shoppinglist.data.HungarianWord;
@@ -27,7 +30,8 @@ import hu.bme.aut.shoppinglist.data.ItalianWord;
 import hu.bme.aut.shoppinglist.data.TranslationData;
 import hu.bme.aut.shoppinglist.fragments.NewTranslationDialogFragment;
 
-public class MainActivity extends AppCompatActivity
+public class MainActivity
+        extends AppCompatActivity
         implements NewTranslationDialogFragment.NewTranslationDialogListener {
 
     private DictionaryDatabase database;
@@ -172,5 +176,13 @@ public class MainActivity extends AppCompatActivity
             e.printStackTrace();
             return new ArrayList<>();
         }
+    }
+
+    public TranslationAdapter.WordChangeListener<HungarianWord> getNewHungarianWordChangeListener(){
+        return new HungarianWordChangeListener(database);
+    }
+
+    public TranslationAdapter.WordChangeListener<ItalianWord> getNewItalianWordChangeListener(){
+        return new ItalianWordChangeListener(database);
     }
 }

@@ -19,6 +19,7 @@ import hu.bme.aut.shoppinglist.MainActivity;
 import hu.bme.aut.shoppinglist.R;
 import hu.bme.aut.shoppinglist.adapter.TranslationAdapter;
 import hu.bme.aut.shoppinglist.data.ItalianWord;
+import hu.bme.aut.shoppinglist.data.Word;
 
 public class TranslationFinderFragment extends Fragment {
 
@@ -28,6 +29,7 @@ public class TranslationFinderFragment extends Fragment {
     private RecyclerView recyclerView;
     private TranslationAdapter adapter;
     private MainActivity activity;
+    private View rootView;
 
     @Override
     public void onAttach(Context context){
@@ -50,19 +52,22 @@ public class TranslationFinderFragment extends Fragment {
             }
         });
 
-        initRecyclerView(rootView);
+        this.rootView = rootView;
 
         return rootView;
     }
 
-    private void initRecyclerView(View rootView) {
+    private void initRecyclerView() {
         recyclerView = rootView.findViewById(R.id.MainRecyclerView);
-        adapter = new TranslationAdapter();
+        adapter = new TranslationAdapter<>(activity.getNewItalianWordChangeListener());
         recyclerView.setLayoutManager(new LinearLayoutManager(activity));
         recyclerView.setAdapter(adapter);
     }
 
+    @SuppressWarnings("unchecked")
     private void loadItalianTranslationsInBackground(String hungarianWord) {
+        initRecyclerView();
+
         List<ItalianWord> italianTranslations = activity.findItalianTranslationsFor(hungarianWord);
 
         for(ItalianWord italianWord : italianTranslations)
