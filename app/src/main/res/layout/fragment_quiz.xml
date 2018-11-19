@@ -13,13 +13,13 @@
     
     <info.hoang8f.widget.FButton
         android:id="@+id/startQuizButton"
-        android:layout_width="400dp"
+        android:layout_width="150dp"
         android:layout_height="wrap_content"
-        fbutton:buttonColor="@color/fbutton_color_turquoise"
         fbutton:shadowEnabled="true"
         fbutton:shadowHeight="5dp"
         fbutton:cornerRadius="5dp"
         android:text="@string/start_quiz"
+        android:layout_gravity="center"
         />
 
     <android.support.v7.widget.RecyclerView
@@ -33,15 +33,14 @@
 
     <info.hoang8f.widget.FButton
         android:id="@+id/checkQuizButton"
-        android:layout_width="400dp"
+        android:layout_width="150dp"
         android:layout_height="wrap_content"
         android:visibility="invisible"
-        fbutton:buttonColor="@color/fbutton_color_concrete"
-        fbutton:shadowColor="@color/fbutton_color_asbestos"
         fbutton:shadowEnabled="true"
         fbutton:shadowHeight="5dp"
         fbutton:cornerRadius="5dp"
         android:text="@string/check_quiz"
+        android:layout_gravity="center"
         />
 
 </LinearLayout>

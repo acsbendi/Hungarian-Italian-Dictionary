@@ -1,6 +1,7 @@
 package hu.bme.aut.hungarianitaliandictionary.fragments;
 
 import android.content.Context;
+import android.content.res.TypedArray;
 import android.graphics.Point;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -8,6 +9,7 @@ import android.support.annotation.Nullable;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.SwitchCompat;
+import android.util.TypedValue;
 import android.view.Display;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -23,6 +25,7 @@ import hu.bme.aut.hungarianitaliandictionary.R;
 import hu.bme.aut.hungarianitaliandictionary.adapters.QuizAdapter;
 import hu.bme.aut.hungarianitaliandictionary.data.entities.HungarianWord;
 import hu.bme.aut.hungarianitaliandictionary.data.entities.ItalianWord;
+import info.hoang8f.widget.FButton;
 
 import static hu.bme.aut.hungarianitaliandictionary.data.entities.TranslationDirection.*;
 
@@ -34,7 +37,7 @@ public class QuizFragment extends TranslationDirectionSettableFragment {
     private RecyclerView recyclerView;
     private QuizAdapter adapter;
     private MainActivity activity;
-    private Button checkButton;
+    private FButton checkButton;
     private SwitchCompat quizTypeSwitchButton;
 
     @Override
@@ -48,7 +51,8 @@ public class QuizFragment extends TranslationDirectionSettableFragment {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View rootView = View.inflate(getContext(), R.layout.fragment_quiz, null);
 
-        Button startButton = rootView.findViewById(R.id.startQuizButton);
+        FButton startButton = rootView.findViewById(R.id.startQuizButton);
+        startButton.setButtonColor(fetchPrimaryColor());
         startButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -57,6 +61,7 @@ public class QuizFragment extends TranslationDirectionSettableFragment {
         });
 
         checkButton = rootView.findViewById(R.id.checkQuizButton);
+        checkButton.setButtonColor(fetchPrimaryColor());
         checkButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -71,6 +76,17 @@ public class QuizFragment extends TranslationDirectionSettableFragment {
         initTranslationDirectionSwitchButton(rootView);
 
         return rootView;
+    }
+
+    private int fetchPrimaryColor() {
+        TypedValue typedValue = new TypedValue();
+
+        TypedArray a = activity.obtainStyledAttributes(typedValue.data, new int[] { R.attr.colorPrimary });
+        int color = a.getColor(0, 0);
+
+        a.recycle();
+
+        return color;
     }
 
     private void initQuizTypeSwitchButton(View rootView){
