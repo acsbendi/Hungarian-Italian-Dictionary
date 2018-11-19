@@ -167,6 +167,11 @@ public class QuizFragment extends TranslationDirectionSettableFragment {
 
     private void initRecyclerView(View rootView) {
         recyclerView = rootView.findViewById(R.id.quizRecyclerView);
-        recyclerView.setLayoutManager(new LinearLayoutManager(activity));
+        recyclerView.setLayoutManager( new LinearLayoutManager(activity) {
+            @Override
+            public boolean canScrollVertically() {
+                return false;
+            }
+        });
     }
 }
