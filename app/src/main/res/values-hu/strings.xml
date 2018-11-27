@@ -23,4 +23,5 @@
 
     <string name="start_quiz">Start</string>
     <string name="check_quiz">Ellenőrzés</string>
+    <string name="quiz_result">A kvízed eredménye:</string>
 </resources>
