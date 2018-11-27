@@ -2,17 +2,19 @@ package hu.bme.aut.hungarianitaliandictionary.adapters;
 
 import android.content.Context;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentPagerAdapter;
+import android.support.v4.app.FragmentStatePagerAdapter;
+import android.util.Log;
 
 import hu.bme.aut.hungarianitaliandictionary.R;
 import hu.bme.aut.hungarianitaliandictionary.fragments.QuizFragment;
 import hu.bme.aut.hungarianitaliandictionary.fragments.ResultFragment;
 import hu.bme.aut.hungarianitaliandictionary.fragments.TranslationFinderFragment;
 
-public class FragmentViewPagerAdapter extends FragmentPagerAdapter implements QuizAdapter.QuizDoneObserver{
+public class FragmentViewPagerAdapter extends FragmentStatePagerAdapter implements QuizAdapter.QuizDoneObserver{
 
     private final Context context;
     private boolean quizDone = false;
@@ -38,6 +40,11 @@ public class FragmentViewPagerAdapter extends FragmentPagerAdapter implements Qu
         }
     }
 
+    @Override
+    public int getItemPosition(@NonNull Object object) {
+        return POSITION_NONE;
+    }
+
     @Nullable
     @Override
     public CharSequence getPageTitle(int position) {
@@ -60,5 +67,6 @@ public class FragmentViewPagerAdapter extends FragmentPagerAdapter implements Qu
         bundle.putInt("correctAnswerCount", correctAnswerCount);
         bundle.putInt("questionCount", questionCount);
         resultFragment.setArguments(bundle);
+        notifyDataSetChanged();
     }
 }
