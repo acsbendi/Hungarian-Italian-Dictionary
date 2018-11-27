@@ -27,4 +27,12 @@
         <item name="colorAccent">@color/favoriteStarYellow</item>
     </style>
 
+    <style name="ResultTextStyle">
+        <item name="android:textAlignment">center</item>
+        <item name="android:layout_centerHorizontal">true</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:textSize">20sp</item>
+        <item name="android:textColor">#FFFFFF</item>
+    </style>
+
 </resources>
