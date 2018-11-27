@@ -10,9 +10,11 @@ import hu.bme.aut.hungarianitaliandictionary.R;
 import hu.bme.aut.hungarianitaliandictionary.fragments.QuizFragment;
 import hu.bme.aut.hungarianitaliandictionary.fragments.TranslationFinderFragment;
 
-public class FragmentViewPagerAdapter extends FragmentPagerAdapter {
+public class FragmentViewPagerAdapter extends FragmentPagerAdapter implements QuizAdapter.QuizDoneObserver{
 
     private final Context context;
+    private boolean quizDone = false;
+    private ResultFragment resultFragment = new ResultFragment();
 
     public FragmentViewPagerAdapter(Context context, FragmentManager fm) {
         super(fm);
@@ -25,7 +27,10 @@ public class FragmentViewPagerAdapter extends FragmentPagerAdapter {
             case 0:
                 return new TranslationFinderFragment();
             case 1:
-                return new QuizFragment();
+                if(quizDone)
+                    return resultFragment;
+                else
+                    return new QuizFragment();
             default:
                 return new TranslationFinderFragment();
         }
@@ -44,5 +49,10 @@ public class FragmentViewPagerAdapter extends FragmentPagerAdapter {
     @Override
     public int getCount() {
         return 2;
+    }
+
+    @Override
+    public void quizDone(int correctAnswerCount, int questionCount) {
+        quizDone = true;
     }
 }

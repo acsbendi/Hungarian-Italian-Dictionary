@@ -41,11 +41,18 @@ public class MainActivity
         implements NewTranslationDialogFragment.NewTranslationDialogListener {
 
     private DictionaryDatabase database;
+    private FragmentViewPagerAdapter fragmentViewPagerAdapter;
+
+    public FragmentViewPagerAdapter getFragmentViewPagerAdapter() {
+        return fragmentViewPagerAdapter;
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        fragmentViewPagerAdapter = new FragmentViewPagerAdapter(getBaseContext(), getSupportFragmentManager());
 
         initLayout();
 
@@ -65,7 +72,7 @@ public class MainActivity
         });
 
         ViewPager viewPager = findViewById(R.id.viewPager);
-        viewPager.setAdapter(new FragmentViewPagerAdapter(getBaseContext(), getSupportFragmentManager()));
+        viewPager.setAdapter(fragmentViewPagerAdapter);
     }
 
     private void initDatabase(){

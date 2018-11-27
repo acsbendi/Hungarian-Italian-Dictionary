@@ -22,6 +22,7 @@ import java.util.List;
 
 import hu.bme.aut.hungarianitaliandictionary.MainActivity;
 import hu.bme.aut.hungarianitaliandictionary.R;
+import hu.bme.aut.hungarianitaliandictionary.adapters.FragmentViewPagerAdapter;
 import hu.bme.aut.hungarianitaliandictionary.adapters.QuizAdapter;
 import hu.bme.aut.hungarianitaliandictionary.data.entities.HungarianWord;
 import hu.bme.aut.hungarianitaliandictionary.data.entities.ItalianWord;
@@ -39,11 +40,13 @@ public class QuizFragment extends TranslationDirectionSettableFragment {
     private MainActivity activity;
     private FButton checkButton;
     private SwitchCompat quizTypeSwitchButton;
+    private FragmentViewPagerAdapter fragmentViewPagerAdapter;
 
     @Override
     public void onAttach(Context context){
         super.onAttach(context);
         this.activity = (MainActivity)context;
+        this.fragmentViewPagerAdapter = ((MainActivity) context).getFragmentViewPagerAdapter();
     }
 
     @Nullable
@@ -150,18 +153,16 @@ public class QuizFragment extends TranslationDirectionSettableFragment {
 
 
     private void checkQuiz(){
-        Toast.makeText(activity,
-                String.valueOf(adapter.getCorrectAnswerCount()), Toast.LENGTH_SHORT)
-                .show(); //TODO make a result screen
+        adapter.checkQuiz();
     }
 
     private void setHungarianToItalianRecyclerViewAdapter() {
-        adapter = new QuizAdapter(HUNGARIAN_TO_ITALIAN, activity);
+        adapter = new QuizAdapter(HUNGARIAN_TO_ITALIAN, activity, fragmentViewPagerAdapter);
         recyclerView.setAdapter(adapter);
     }
 
     private void setItalianToHungarianRecyclerViewAdapter() {
-        adapter = new QuizAdapter(ITALIAN_TO_HUNGARIAN, activity);
+        adapter = new QuizAdapter(ITALIAN_TO_HUNGARIAN, activity, fragmentViewPagerAdapter);
         recyclerView.setAdapter(adapter);
     }
 

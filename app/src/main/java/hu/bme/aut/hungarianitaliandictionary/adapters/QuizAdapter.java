@@ -23,14 +23,20 @@ import static hu.bme.aut.hungarianitaliandictionary.data.entities.TranslationDir
 public class QuizAdapter
         extends RecyclerView.Adapter<QuizAdapter.QuizWordViewHolder> {
 
+    public interface QuizDoneObserver{
+        void quizDone(int correctAnswerCount, int questionCount);
+    }
+
     private final List<Word> questionWords = new ArrayList<>();
     private final List<String> answers = new ArrayList<>();
     private final TranslationDirection translationDirection;
     private final MainActivity activity;
+    private final QuizDoneObserver observer;
 
-    public QuizAdapter(TranslationDirection translationDirection, MainActivity activity){
+    public QuizAdapter(TranslationDirection translationDirection, MainActivity activity, QuizDoneObserver observer){
         this.translationDirection = translationDirection;
         this.activity = activity;
+        this.observer = observer;
     }
 
     @NonNull
@@ -56,7 +62,7 @@ public class QuizAdapter
         notifyItemInserted(questionWords.size() - 1);
     }
 
-    public int getCorrectAnswerCount(){
+    private int getCorrectAnswerCount(){
         int correctAnswerCount = 0;
 
         if(translationDirection == ITALIAN_TO_HUNGARIAN){
@@ -72,6 +78,10 @@ public class QuizAdapter
         }
 
         return correctAnswerCount;
+    }
+
+    public void checkQuiz(){
+        observer.quizDone(getCorrectAnswerCount(), questionWords.size());
     }
 
     @Override
