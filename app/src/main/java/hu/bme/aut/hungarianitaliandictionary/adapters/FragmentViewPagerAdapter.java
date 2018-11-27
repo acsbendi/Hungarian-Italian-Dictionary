@@ -69,4 +69,9 @@ public class FragmentViewPagerAdapter extends FragmentStatePagerAdapter implemen
         resultFragment.setArguments(bundle);
         notifyDataSetChanged();
     }
+
+    public void quizResultSeen(){
+        quizDone = false;
+        notifyDataSetChanged();
+    }
 }
