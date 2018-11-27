@@ -25,5 +25,8 @@
     <string name="check_quiz">Ellenőrzés</string>
     <string name="quiz_result">A kvízed eredménye:</string>
 
-    <string name="delete_all_items">Összes elem törlése</string>
+    <string name="delete_all_words">Összes szó törlése</string>
+    <string name="delete_all_words_confirmation_dialog_message">Ez a művelet minden szót törölni fog. Biztos ezt akarod?</string>
+    <string name="no">Nem</string>
+    <string name="yes">Igen</string>
 </resources>

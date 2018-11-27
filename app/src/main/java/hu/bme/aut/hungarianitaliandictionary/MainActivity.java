@@ -3,13 +3,11 @@ package hu.bme.aut.hungarianitaliandictionary;
 import android.app.AlertDialog;
 import android.arch.persistence.room.Room;
 import android.content.DialogInterface;
-import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -20,6 +18,7 @@ import java.util.concurrent.ExecutionException;
 
 import hu.bme.aut.hungarianitaliandictionary.adapters.FragmentViewPagerAdapter;
 import hu.bme.aut.hungarianitaliandictionary.adapters.TranslationAdapter;
+import hu.bme.aut.hungarianitaliandictionary.backgroundtasks.alldatabase.AllDataDeleter;
 import hu.bme.aut.hungarianitaliandictionary.backgroundtasks.hungarian.FavoriteHungarianWordFinder;
 import hu.bme.aut.hungarianitaliandictionary.backgroundtasks.italian.FavoriteItalianWordFinder;
 import hu.bme.aut.hungarianitaliandictionary.backgroundtasks.translation.HungarianToItalianTranslationFinder;
@@ -115,30 +114,14 @@ public class MainActivity
 
     private void onAllItemsDeleteButtonClick(){
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        builder.setMessage("All items will be deleted. Are you sure you want to do this?");
-        builder.setPositiveButton("yesssss", new DialogInterface.OnClickListener() {
+        builder.setMessage(R.string.delete_all_words_confirmation_dialog_message);
+        builder.setPositiveButton(R.string.yes, new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
-                new AsyncTask<Void, Void, Void>(){
-
-                    @Override
-                    protected Void doInBackground(Void... voids) {
-
-                        List<ItalianWord> allItalianWords = database.italianWordDao().getAllItalianWords();
-
-                        database.italianWordDao().delete(allItalianWords.toArray(new ItalianWord[allItalianWords.size()]));
-
-                        List<HungarianWord> allHungarianWords = database.hungarianWordDao().getAllHungarianWords();
-
-                        database.hungarianWordDao().delete(allHungarianWords.toArray(new HungarianWord[allHungarianWords.size()]));
-
-                        return null;
-                    }
-                }.execute();
-
+                new AllDataDeleter(database).execute();
             }
         });
-        builder.setNegativeButton("Cancel", null);
+        builder.setNegativeButton(R.string.no, null);
         builder.show();
     }
 

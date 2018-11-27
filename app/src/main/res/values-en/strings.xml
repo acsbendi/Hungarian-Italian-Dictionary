@@ -25,5 +25,8 @@
     <string name="check_quiz">Check</string>
     <string name="quiz_result">The result of your quiz:</string>
 
-    <string name="delete_all_items">Delete all items</string>
+    <string name="delete_all_words">Delete all words</string>
+    <string name="delete_all_words_confirmation_dialog_message">All words will be deleted. Are you sure you want to do this?</string>
+    <string name="no">No</string>
+    <string name="yes">Yes</string>
 </resources>
