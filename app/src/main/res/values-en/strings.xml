@@ -24,4 +24,6 @@
     <string name="start_quiz">Start</string>
     <string name="check_quiz">Check</string>
     <string name="quiz_result">The result of your quiz:</string>
+
+    <string name="delete_all_items">Delete all items</string>
 </resources>

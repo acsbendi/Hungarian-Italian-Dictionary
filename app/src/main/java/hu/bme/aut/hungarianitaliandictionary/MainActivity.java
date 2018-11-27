@@ -98,13 +98,7 @@ public class MainActivity
         // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
 
-        //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            onLogDatabaseButtonClick();
-            return true;
-        }
-
-        if(id == R.id.delete_all){
+        if(id == R.id.deleteAllItems){
             onAllItemsDeleteButtonClick();
             return true;
         }
@@ -137,36 +131,6 @@ public class MainActivity
                         List<HungarianWord> allHungarianWords = database.hungarianWordDao().getAllHungarianWords();
 
                         database.hungarianWordDao().delete(allHungarianWords.toArray(new HungarianWord[allHungarianWords.size()]));
-
-                        return null;
-                    }
-                }.execute();
-
-            }
-        });
-        builder.setNegativeButton("Cancel", null);
-        builder.show();
-    }
-
-    private void onLogDatabaseButtonClick(){
-        AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        builder.setMessage("All items will be logged. Are you sure you want to do this?");
-        builder.setPositiveButton("yesssss", new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialog, int which) {
-                new AsyncTask<Void, Void, Void>(){
-
-                    @Override
-                    protected Void doInBackground(Void... voids) {
-                        List<HungarianWord> hungarianWords = database.hungarianWordDao().getAllHungarianWords();
-                        List<ItalianWord> italianWords = database.italianWordDao().getAllItalianWords();
-
-                        for(HungarianWord hungarianWord : hungarianWords)
-                            Log.d("hungarian word", hungarianWord.word + " " + String.valueOf(hungarianWord.id));
-
-                        for(ItalianWord italianWord : italianWords)
-                            Log.d("italian word", italianWord.word + " " + String.valueOf(italianWord.id));
-
 
                         return null;
                     }

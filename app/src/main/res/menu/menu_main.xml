@@ -3,14 +3,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     tools:context="hu.bme.aut.hungarianitaliandictionary.MainActivity">
     <item
-        android:id="@+id/action_settings"
+        android:id="@+id/deleteAllItems"
         android:orderInCategory="100"
-        android:title="Menu item 1"
-        app:showAsAction="never" />
-
-    <item
-        android:id="@+id/delete_all"
-        android:orderInCategory="1"
-        android:title="Menu item 2"
+        android:title="@string/delete_all_items"
         app:showAsAction="never" />
 </menu>
